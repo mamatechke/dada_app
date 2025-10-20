@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dada Theme Buttons – Accessibility Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dada: {
+                            primary: '#E84D4D',
+                            secondary: '#FFB6A9',
+                            background: '#FFEDE6',
+                            text: '#5E2A35',
+                            subtle: '#8E4B50',
+                            darkBg: '#1A1A1A',
+                            accent: '#F17E7E'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-dada-background text-dada-text dark:bg-dada-darkBg dark:text-dada-background transition-colors duration-300 min-h-screen flex flex-col justify-center items-center space-y-8">
+
+<!-- Toggle -->
+<button onclick="document.documentElement.classList.toggle('dark')"
+        class="bg-dada-primary text-white px-4 py-2 rounded hover:bg-dada-accent transition">
+    Toggle Dark Mode 🌗
+</button>
+
+<!-- Buttons Preview -->
+<div class="space-y-6 text-center">
+    <h1 class="text-xl font-bold">Dada Theme Buttons (Light / Dark Mode)</h1>
+
+    <!-- Logged In -->
+    <a href="#"
+       class="inline-block
+              bg-dada-primary text-white
+              hover:bg-dada-accent
+              dark:bg-dada-accent dark:hover:bg-dada-primary dark:text-dada-background
+              font-semibold px-6 py-3 rounded-lg
+              transition-colors duration-200 shadow-sm">
+        Share Your Story
+    </a>
+
+    <!-- Logged Out -->
+    <a href="#"
+       class="inline-block
+              border border-dada-subtle text-dada-text
+              hover:bg-dada-secondary hover:text-dada-text
+              dark:border-dada-secondary dark:text-dada-background dark:hover:bg-dada-subtle
+              font-semibold px-6 py-3 rounded-lg
+              transition-colors duration-200 shadow-sm">
+        Log in to Share Your Story
+    </a>
+</div>
+<!-- Contrast Reference -->
+<div class="mt-12 grid grid-cols-2 gap-4 text-sm max-w-md">
+    <div class="bg-dada-primary text-white p-3 rounded text-center">#E84D4D on White ✅</div>
+    <div class="bg-dada-accent text-dada-background p-3 rounded text-center">#F17E7E on Dark ✅</div>
+    <div class="bg-dada-secondary text-dada-text p-3 rounded text-center">#FFB6A9 on Text ✅</div>
+    <div class="bg-dada-background text-dada-text p-3 rounded text-center">Background/Text ✅</div>
+</div>
+
+</body>
+</html>
