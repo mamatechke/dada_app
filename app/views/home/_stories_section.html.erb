@@ -53,13 +53,24 @@
     <!-- CTA Button -->
     <div class="mt-12 text-center">
       <% if user_signed_in? %>
-        <%= link_to "Share Your Story", new_web_content_path,
-                    class: "inline-block bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-lg transition" %>
+        <%= link_to "Share Your Story",
+                    new_web_content_path,
+                    class: "inline-block
+                        bg-dada-primary text-white
+                        dark:bg-dada-accent dark:text-gray-50
+                        hover:bg-dada-accent dark:hover:bg-dada-primary
+                        font-semibold px-6 py-3 rounded-lg transition-colors duration-200 shadow-sm" %>
       <% else %>
-        <%= link_to "Log in to Share Your Story", new_user_session_path,
-                    class: "inline-block border border-gray-300 hover:bg-gray-100 text-gray-800 font-semibold px-6 py-3 rounded-lg transition" %>
+        <%= link_to "Log in to Share Your Story",
+                    new_user_session_path,
+                    class: "inline-block
+                        border border-gray-300 text-gray-800
+                        dark:border-gray-600 dark:text-gray-100
+                        hover:bg-gray-100 dark:hover:bg-gray-800
+                        font-semibold px-6 py-3 rounded-lg transition-colors duration-200 shadow-sm" %>
       <% end %>
     </div>
+
 
   </div>
 </section>
