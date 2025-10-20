@@ -6,9 +6,9 @@ class Web::ContentsController < ApplicationController
       # This assumes you have tags or categories on your content
       @contents = if stage.present?
            Content.tagged_with(stage)
-         else
+      else
            Content.all
-        end
+      end
     end
   end
 
