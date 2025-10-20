@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+      body {
+          background-color: #FFEDE6;
+          color: #5E2A35;
+          font-family: system-ui, sans-serif;
+          padding: 24px;
+          line-height: 1.6;
+      }
+
+      .button {
+          background-color: #E84D4D;
+          color: white;
+          padding: 12px 24px;
+          text-decoration: none;
+          border-radius: 6px;
+          display: inline-block;
+          margin-top: 24px;
+          font-weight: bold;
+      }
+
+      .footer {
+          margin-top: 32px;
+          font-size: 14px;
+          color: #8E4B50;
+      }
+  </style>
+</head>
+<body>
+<h2>Unlock Your Account 🔓</h2>
+
+<p>
+  Hi <%= @resource.email %>,
+</p>
+<p>
+  Your Dada account has been locked due to multiple unsuccessful sign-in attempts. You can unlock it using the button below:
+</p>
+
+<a class="button" href="<%= unlock_url(@resource, unlock_token: @token) %>">
+  Unlock My Account
+</a>
+
+<p>If you didn’t attempt to sign in, we recommend resetting your password.</p>
+
+<div class="footer">
+  🛡️ The Dada Team
+</div>
+</body>
+</html>

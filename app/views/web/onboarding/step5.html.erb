@@ -1,0 +1,34 @@
+<section class="min-h-screen flex items-center justify-center bg-dada-background dark:bg-dada-darkBg px-4 py-12">
+  <div class="w-full max-w-md bg-white dark:bg-zinc-800 rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl sm:text-3xl font-bold text-dada-text dark:text-white text-center mb-4">
+      Please confirm your info
+    </h2>
+
+    <div class="bg-dada-secondary/20 dark:bg-zinc-700 p-4 rounded-lg border border-dada-secondary/40 dark:border-zinc-600 mb-6">
+      <ul class="space-y-2 text-sm text-dada-text dark:text-zinc-200">
+        <li><strong>Stage:</strong> <%= session[:stage].presence || "Not selected" %></li>
+        <% if session[:stage] != "Ally" %>
+          <li><strong>Symptoms:</strong> <%= (session[:symptoms]||[]).join(", ").presence || "None selected" %></li>
+        <% end %>
+        <li><strong>Country:</strong> <%= session[:country].presence || "Not selected" %></li>
+      </ul>
+
+      <% if session[:stage] == "Ally" %>
+        <div class="mt-4 bg-dada-secondary/40 text-dada-text dark:text-zinc-900 font-semibold rounded-lg px-3 py-2 text-center">
+          💙 Thank you for supporting our community!
+        </div>
+      <% end %>
+    </div>
+
+    <%= form_with url: web_onboarding_submit_path, method: :post, local: true do %>
+      <%= hidden_field_tag :stage, session[:stage] %>
+      <% (session[:symptoms]||[]).each do |symptom| %>
+        <%= hidden_field_tag "symptoms[]", symptom %>
+      <% end %>
+      <%= hidden_field_tag :country, session[:country] %>
+
+      <%= submit_tag "Confirm and Continue",
+                     class: "w-full bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-lg transition" %>
+    <% end %>
+  </div>
+</section>

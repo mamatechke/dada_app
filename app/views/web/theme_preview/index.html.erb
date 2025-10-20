@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dada Theme Accessibility Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+      tailwind.config = {
+          darkMode: 'class',
+          theme: {
+              extend: {
+                  colors: {
+                      dada: {
+                          primary: '#E84D4D',
+                          secondary: '#FFB6A9',
+                          background: '#FFEDE6',
+                          text: '#5E2A35',
+                          subtle: '#8E4B50',
+                          darkBg: '#1A1A1A',
+                          accent: '#F17E7E'
+                      }
+                  }
+              }
+          }
+      }
+  </script>
+</head>
+
+<body class="bg-dada-background text-dada-text dark:bg-dada-darkBg dark:text-dada-background transition-colors duration-300 min-h-screen flex flex-col">
+
+
+<!-- ✅ MAIN CONTENT -->
+<main class="flex-1">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="max-w-3xl mx-auto space-y-6">
+      <!-- ✅ NAVBAR -->
+      <header class="bg-dada-background dark:bg-dada-darkBg shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center">
+          <div class="flex items-center gap-2">
+            <%= image_tag "logo.png", alt: "Dada Logo", class: "h-8 w-auto sm:h-10" %>
+          </div>
+          <button onclick="document.documentElement.classList.toggle('dark')"
+                  class="bg-dada-primary text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded hover:bg-dada-accent transition text-sm">
+            Toggle Dark Mode
+          </button>
+        </div>
+      </header>
+      <div class="text-center space-y-2">
+        <h1 class="text-2xl sm:text-3xl font-bold">Dada Theme: Accessibility Preview</h1>
+        <p class="text-dada-subtle text-sm">Light / Dark Mode & Contrast Sample</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+        <div class="bg-white dark:bg-zinc-800 shadow p-4 rounded-lg">
+          <h2 class="text-lg font-semibold">Buttons</h2>
+          <div class="mt-2 space-x-2">
+            <button class="bg-dada-primary text-white px-4 py-2 rounded text-sm">Primary Button</button>
+            <button class="bg-dada-secondary text-dada-text px-4 py-2 rounded text-sm">Secondary Button</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-zinc-800 shadow p-4 rounded-lg">
+          <h2 class="text-lg font-semibold">Text Contrast</h2>
+          <div class="mt-2 space-y-2 text-sm">
+            <p class="text-dada-text">This is primary text on light background</p>
+            <p class="text-dada-subtle">This is subtle text</p>
+            <p class="text-dada-primary">This is red accent text</p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 bg-white dark:bg-zinc-800 shadow p-4 rounded-lg mt-4">
+          <h2 class="text-lg font-semibold">Contrast Ratio Visual Test</h2>
+          <div class="mt-2 space-y-2">
+            <div class="p-3 bg-dada-primary text-white rounded text-sm">#E84D4D on White ✅</div>
+            <div class="p-3 bg-white text-dada-primary border border-dada-primary rounded text-sm">White on #E84D4D ❌ for small text</div>
+            <div class="p-3 bg-dada-secondary text-dada-text rounded text-sm">#FFB6A9 on text ✅ (use carefully)</div>
+          </div>
+        </div>
+      </div>
+      <!-- ✅ FOOTER -->
+      <footer class="bg-dada-background dark:bg-dada-darkBg text-sm text-dada-subtle dark:text-zinc-400 border-t border-dada-subtle dark:border-zinc-700 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 text-center">
+          &copy; <%= Time.current.year %> Dada. All rights reserved.
+        </div>
+      </footer>
+    </div>
+  </div>
+</main>
+
+
+</body>
+</html>

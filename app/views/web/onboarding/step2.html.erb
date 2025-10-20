@@ -1,0 +1,19 @@
+<section class="min-h-screen flex items-center justify-center bg-dada-background dark:bg-dada-darkBg px-4 py-12">
+  <div class="w-full max-w-md bg-white dark:bg-zinc-800 rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl sm:text-3xl font-bold text-dada-text dark:text-white mb-4 text-center">
+      Where are you in your menopause journey?
+    </h2>
+    <%= form_with url: web_onboarding_step3_path, method: :get, local: true, class: "space-y-4" do %>
+      <% %w[Perimenopause Menopause Post‑menopause Not sure Ally].each do |stage| %>
+        <label class="block cursor-pointer">
+          <%= radio_button_tag :stage, stage, session[:stage] == stage, class: "mr-2" %>
+          <span class="text-dada-text dark:text-white"><%= stage %></span>
+        </label>
+      <% end %>
+      <%= hidden_field_tag :_turbo_frame, "onboarding" %> <!-- optional for Turbo frames -->
+      <div class="mt-6">
+        <%= submit_tag "Next", class: "w-full bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-lg transition" %>
+      </div>
+    <% end %>
+  </div>
+</section>

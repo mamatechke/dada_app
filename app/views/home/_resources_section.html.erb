@@ -1,0 +1,53 @@
+<section class="py-12 bg-dada-background/40 dark:bg-zinc-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <p class="text-sm uppercase text-dada-primary font-semibold tracking-wide">
+        Resource Library
+      </p>
+      <h2 class="text-2xl sm:text-3xl font-bold text-dada-text dark:text-white">
+        Culturally‑Relevant <span class="text-dada-primary">Resources</span>
+      </h2>
+      <p class="mt-2 text-dada-subtle dark:text-zinc-400 max-w-2xl mx-auto text-sm sm:text-base">
+        Access curated content, expert guidance, and community resources tailored for African women's menopause journey.
+      </p>
+    </div>
+
+    <!-- Resource Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <% [
+           { title: "Understanding Menopause in African Context", type: "Guide", tags: ["Cultural", "Traditional Medicine", "Symptoms"], description: "Comprehensive guide covering menopause symptoms, cultural perspectives, and traditional remedies from across Africa." },
+           { title: "Managing Hot Flashes Naturally", type: "Video Series", tags: ["Hot Flashes", "Expert Advice", "Natural Remedies"], description: "Expert-led video series featuring African herbalists and doctors discussing natural approaches to hot flash management." }
+         ].each do |resource| %>
+
+        <div class="bg-white/95 dark:bg-zinc-800/90 border border-dada-secondary/30 dark:border-zinc-700 shadow-lg hover:shadow-xl transition rounded-xl p-6 space-y-4">
+          <div>
+            <h3 class="text-lg font-semibold text-dada-text dark:text-white">
+              <%= resource[:title] %>
+            </h3>
+            <p class="text-sm text-dada-subtle dark:text-zinc-400 font-medium">
+              <%= resource[:type] %>
+            </p>
+          </div>
+
+          <p class="text-sm text-dada-text dark:text-zinc-200 leading-relaxed">
+            <%= resource[:description] %>
+          </p>
+
+          <div class="flex flex-wrap gap-2">
+            <% resource[:tags].each do |tag| %>
+              <span class="bg-dada-secondary/30 dark:bg-zinc-700 text-dada-primary text-xs font-semibold rounded-full px-3 py-1">
+                <%= tag %>
+              </span>
+            <% end %>
+          </div>
+
+          <%= link_to "Access Resource",
+                      "#",
+                      class: "inline-block bg-dada-primary hover:bg-dada-accent text-white text-sm font-semibold px-5 py-2 rounded-lg transition mt-2" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

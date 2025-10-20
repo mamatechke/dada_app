@@ -1,0 +1,28 @@
+<footer class="bg-dada-primary text-white text-sm mt-10 dark:bg-dada-darkBg dark:text-dada-light">
+  <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-white/30 dark:border-dada-secondary/30">
+
+    <!-- Logo & Mission -->
+    <div>
+      <%= image_tag "logo.png", alt: "Dada Logo", class: "h-10 mb-3" %>
+      <p class="leading-relaxed text-white dark:text-dada-subtle">
+        Walking with African women through menopause — offering culturally-rooted guidance,
+        community wisdom, and gentle support powered by thoughtful technology.
+      </p>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+      <h3 class="font-semibold mb-2 text-white dark:text-white">Get in Touch</h3>
+      <p class="flex items-center gap-2">
+        📧 <%= mail_to "team@maa-africa.org", "team@maa-africa.org", class: "underline text-white dark:text-dada-primary" %>
+      </p>
+      <p class="flex items-center gap-2 text-white dark:text-dada-subtle">
+        🌐 Serving Africa & the Diaspora
+      </p>
+    </div>
+  </div>
+
+  <div class="text-center text-xs py-4 border-t border-white/20 dark:border-dada-secondary/30 text-white/80 dark:text-dada-subtle">
+    &copy; <%= Time.current.year %> Dada App. All rights reserved.
+  </div>
+</footer>

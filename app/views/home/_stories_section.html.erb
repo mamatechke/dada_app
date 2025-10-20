@@ -1,0 +1,65 @@
+<section class="py-12 bg-dada-background/40 dark:bg-zinc-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <p class="text-sm uppercase text-dada-primary font-semibold tracking-wide">
+        Sister Stories
+      </p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-dada-text dark:text-white">
+        Real Women, Real <span class="text-dada-primary">Journeys</span>
+      </h2>
+      <p class="mt-2 text-dada-subtle dark:text-zinc-400 max-w-2xl mx-auto text-sm sm:text-base">
+        Discover how African women are navigating menopause with confidence, wisdom, and sisterhood support. Every story matters.
+      </p>
+    </div>
+
+    <!-- Story Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <% [
+           { emoji: "🌺", name: "Amara K.", location: "Lagos, Nigeria • Age 52 • Post-menopause", quote: "Finding sisterhood through Dada changed everything. I learned that my night sweats weren’t just 'getting older' but a normal part of menopause that I could manage naturally.", tags: ["Night Sweats", "Natural Remedies", "Community"] },
+           { emoji: "🦋", name: "Grace M.", location: "Nairobi, Kenya • Age 48 • Perimenopause", quote: "The AI chat helped me understand my irregular periods weren’t something to worry about alone. Now I have strategies that fit my lifestyle and cultural practices.", tags: ["Irregular Periods", "Cultural Practices", "AI Support"] },
+           { emoji: "🌻", name: "Fatou S.", location: "Accra, Ghana • Age 55 • Post-menopause", quote: "As a grandmother, I want to prepare my daughters. Dada gave me the language and knowledge to start these important conversations in our family.", tags: ["Family Conversations", "Intergenerational", "Education"] }
+         ].each do |story| %>
+
+        <div class="bg-white/95 dark:bg-zinc-800/90 border border-dada-secondary/30 dark:border-zinc-700 shadow-lg hover:shadow-xl transition rounded-xl p-6 flex flex-col justify-between space-y-4">
+          <div class="flex items-center space-x-3">
+            <span class="text-3xl"><%= story[:emoji] %></span>
+            <div>
+              <h3 class="text-lg font-semibold text-dada-text dark:text-white"><%= story[:name] %></h3>
+              <p class="text-sm text-dada-subtle dark:text-zinc-400"><%= story[:location] %></p>
+            </div>
+          </div>
+
+          <blockquote class="text-sm italic text-dada-text dark:text-zinc-200 leading-relaxed">
+            “<%= story[:quote] %>”
+          </blockquote>
+
+          <div class="flex flex-wrap gap-2">
+            <% story[:tags].each do |tag| %>
+              <span class="bg-dada-secondary/30 dark:bg-zinc-700 text-dada-primary text-xs font-semibold rounded-full px-3 py-1">
+                <%= tag %>
+              </span>
+            <% end %>
+          </div>
+
+          <div class="text-dada-primary font-semibold text-sm pt-3 border-t border-gray-100 dark:border-zinc-700 flex items-center gap-1">
+            <span class="text-base">★</span><span class="tracking-tight">Verified Story</span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="mt-12 text-center">
+      <% if user_signed_in? %>
+        <%= link_to "Share Your Story", new_web_content_path,
+                    class: "inline-block bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-lg transition" %>
+      <% else %>
+        <%= link_to "Log in to Share Your Story", new_user_session_path,
+                    class: "inline-block border border-gray-300 hover:bg-gray-100 text-gray-800 font-semibold px-6 py-3 rounded-lg transition" %>
+      <% end %>
+    </div>
+
+  </div>
+</section>

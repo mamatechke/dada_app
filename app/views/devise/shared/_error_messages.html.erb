@@ -1,0 +1,12 @@
+<% if resource.errors.any? %>
+  <div class="mb-6 bg-red-100 dark:bg-red-200 border-l-4 border-red-500 text-dada-text dark:text-red-900 p-4 rounded">
+    <h3 class="font-semibold text-red-700 dark:text-red-900 mb-2">
+      🚫 <%= pluralize(resource.errors.count, "error") %> prohibited this <%= resource_name.to_s.humanize.downcase %> from being saved:
+    </h3>
+    <ul class="list-disc list-inside text-sm text-red-600 dark:text-red-800">
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

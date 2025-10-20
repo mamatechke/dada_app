@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= content_for?(:title) ? yield(:title) : "Dada" %></title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+      tailwind.config = {
+          darkMode: 'class',
+          theme: {
+              extend: {
+                  colors: {
+                      dada: {
+                          primary: '#E84D4D',
+                          secondary: '#FFB6A9',
+                          background: '#FFEDE6',
+                          text: '#5E2A35',
+                          subtle: '#8E4B50',
+                          darkBg: '#1A1A1A',
+                          accent: '#F17E7E'
+                      }
+                  }
+              }
+          }
+      }
+  </script>
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+</head>
+
+<body class="bg-dada-background text-dada-text dark:bg-dada-darkBg dark:text-dada-background transition-colors duration-300 min-h-screen flex flex-col">
+<%= render "shared/navbar" %>
+<!-- ✅ MAIN CONTENT -->
+<main class="flex-1">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <%= yield %>
+  </div>
+</main>
+<%= render "shared/footer" %>
+
+</body>
+</html>

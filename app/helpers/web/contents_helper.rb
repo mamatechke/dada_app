@@ -1,0 +1,2 @@
+module Web::ContentsHelper
+end

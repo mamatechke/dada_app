@@ -1,0 +1,30 @@
+<div class="min-h-screen flex items-center justify-center bg-dada-background dark:bg-dada-darkBg p-6">
+  <div class="bg-white dark:bg-zinc-800 shadow-lg rounded-lg p-8 w-full max-w-md">
+    <h2 class="text-2xl sm:text-3xl font-bold text-dada-text dark:text-white mb-6 text-center">
+      Forgot your password?
+    </h2>
+
+    <%= form_with model: resource, as: resource_name, url: password_path(resource_name), method: :post, local: true do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="mb-4">
+        <%= f.label :email, class: "block text-sm font-medium text-dada-text dark:text-white" %>
+        <%= f.email_field :email,
+                          autofocus: true,
+                          autocomplete: "email",
+                          placeholder: "you@example.com",
+                          class: "mt-1 block w-full px-3 py-2 bg-white dark:bg-zinc-700 text-dada-text dark:text-white border border-gray-300 dark:border-zinc-600 rounded" %>
+      </div>
+
+      <div>
+        <%= f.submit "Send reset instructions",
+                     class: "w-full bg-dada-primary hover:bg-dada-accent text-white font-semibold py-2 rounded transition" %>
+      </div>
+    <% end %>
+
+    <div class="text-center text-sm mt-6 text-dada-subtle dark:text-zinc-400">
+      <%= render "devise/shared/links" %>
+    </div>
+
+  </div>
+</div>

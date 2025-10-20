@@ -1,0 +1,25 @@
+<div class="bg-white shadow-md rounded-lg p-6 flex flex-col justify-between h-full">
+  <div class="flex items-center gap-3 mb-3">
+    <div class="text-2xl"><%= emoji %></div>
+    <div>
+      <h3 class="font-semibold text-lg"><%= name %></h3>
+      <p class="text-sm text-gray-500"><%= location_age %></p>
+      <% if local_assigns[:stage].present? %>
+        <p class="text-sm text-gray-600 font-medium mt-1"><%= stage %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <p class="text-sm text-gray-700 mb-4"><%= quote %></p>
+
+  <div class="flex flex-wrap gap-2 mb-3">
+    <% tags.each do |tag| %>
+      <span class="bg-gray-100 text-xs text-gray-600 px-2 py-1 rounded"><%= tag %></span>
+    <% end %>
+  </div>
+
+  <div class="flex items-center gap-2 text-yellow-500 text-sm">
+    <span>★★★★★</span>
+    <span class="text-gray-600 text-xs">Verified Story</span>
+  </div>
+</div>

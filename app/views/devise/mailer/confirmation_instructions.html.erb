@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+      body {
+          background-color: #FFEDE6;
+          color: #5E2A35;
+          font-family: system-ui, sans-serif;
+          padding: 24px;
+          line-height: 1.6;
+      }
+
+      h2 {
+          color: #E84D4D;
+      }
+
+      .button {
+          display: inline-block;
+          background-color: #E84D4D;
+          color: #fff;
+          padding: 12px 24px;
+          text-decoration: none;
+          border-radius: 6px;
+          font-weight: bold;
+          margin-top: 24px;
+      }
+
+      .footer {
+          margin-top: 32px;
+          font-size: 14px;
+          color: #8E4B50;
+      }
+  </style>
+</head>
+<body>
+<h2>Welcome to Dada!</h2>
+
+<p>Hi <%= @resource.email %>,</p>
+
+<p>
+  We're excited to have you join our community. Please confirm your email address by clicking the button below:
+</p>
+
+<a class="button" href="<%= confirmation_url(@resource, confirmation_token: @token) %>">
+  Confirm My Account
+</a>
+
+<p>
+  If you didn't sign up for a Dada account, please ignore this email.
+</p>
+
+<div class="footer">
+  ❤️ The Dada Team<br />
+</div>
+</body>
+</html>
