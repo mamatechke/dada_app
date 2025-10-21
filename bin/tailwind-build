@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# bin/tailwind-build
+echo "Building Tailwind → app/assets/builds/application.css"
+
+./bin/tailwindcss \
+  -i ./app/assets/stylesheets/application.tailwind.css \
+  -o ./app/assets/builds/application.css \
+  --minify
