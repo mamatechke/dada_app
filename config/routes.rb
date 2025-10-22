@@ -9,10 +9,14 @@ Rails.application.routes.draw do
     get "onboarding/step5", to: "onboarding#step5"
     post "onboarding/submit", to: "onboarding#submit"
     get "theme_preview", to: "theme_preview#index"
+    get "/profile", to: "profiles#show", as: :profile
+
+
 
     # ✅ This defines web_circles_path and web_contents_path
     resources :circles, only: [ :index, :show ]
     resources :contents, only: [ :new, :create, :index, :show ]
+    resources :shares
   end
 
   get "home/index"

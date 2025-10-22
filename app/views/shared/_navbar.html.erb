@@ -37,7 +37,7 @@
       <!-- Avatar or Login -->
       <div class="hidden md:block">
         <% if user_signed_in? %>
-          <%= link_to edit_user_registration_path, class: "flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:ring-2 hover:ring-dada-primary transition" do %>
+          <%= link_to main_app.web_profile_path, class: "flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:ring-2 hover:ring-dada-primary transition" do %>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                  viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                  class="w-6 h-6 text-dada-text dark:text-white">
@@ -51,7 +51,6 @@
           <% end %>
         <% end %>
       </div>
-
 
       <!-- Mobile menu toggle button -->
       <div class="md:hidden">

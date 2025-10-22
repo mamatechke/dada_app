@@ -1,0 +1,65 @@
+<div class="min-h-screen bg-dada-background dark:bg-dada-darkBg p-4">
+  <div class="max-w-4xl mx-auto">
+    <div class="bg-white dark:bg-zinc-800 shadow-md rounded-lg p-6 mb-8">
+      <h2 class="text-2xl font-bold text-dada-text dark:text-white mb-4">My Shares</h2>
+
+      <%= link_to "New Share", new_web_share_path,
+                  class: "mb-4 inline-block bg-dada-primary hover:bg-dada-accent text-white font-semibold px-4 py-2 rounded" %>
+
+      <div class="space-y-6">
+        <% @shares.each do |share| %>
+          <div class="bg-white dark:bg-zinc-700 shadow rounded-lg p-4">
+            <div class="flex justify-between items-center mb-2">
+              <span class="text-sm text-dada-subtle dark:text-zinc-400">
+                <%= share.created_at.strftime("%b %d, %Y") %>
+              </span>
+
+              <div class="space-x-2">
+                <%= link_to "Edit", edit_web_share_path(share),
+                            class: "text-dada-primary hover:underline text-sm" %>
+                <%= link_to "Delete", web_share_path(share),
+                            method: :delete,
+                            data: { confirm: "Are you sure?" },
+                            class: "text-red-500 hover:underline text-sm" %>
+              </div>
+            </div>
+
+            <!-- ✅ FIXED: use share.share_type instead of share.type -->
+            <h3 class="text-lg font-semibold text-dada-text dark:text-white">
+              <%= share.title.presence || share.share_type.capitalize %>
+            </h3>
+
+            <!-- ✅ FIXED: handle nil visibility safely -->
+            <p class="text-dada-subtle dark:text-zinc-400 mb-2">
+              Visibility:
+              <%= share.visibility&.capitalize || "Unknown" %>
+            </p>
+
+            <!-- ✅ Simplified content rendering -->
+            <% if share.share_type == "text" %>
+              <p class="text-dada-text dark:text-zinc-200"><%= share.content.to_s.truncate(200) %></p>
+
+            <% elsif share.share_type == "image" %>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                <% (share.image_urls || "").split(",").each do |img| %>
+                  <img src="<%= img.strip %>"
+                       class="w-full h-32 object-cover rounded"
+                       alt="Shared image">
+                <% end %>
+              </div>
+
+            <% elsif share.share_type == "video" %>
+              <div class="aspect-w-16 aspect-h-9">
+                <iframe src="<%= share.video_url %>"
+                        class="w-full h-full rounded"
+                        frameborder="0"
+                        allowfullscreen></iframe>
+              </div>
+            <% end %>
+
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

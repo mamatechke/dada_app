@@ -1,0 +1,121 @@
+<div class="min-h-screen bg-dada-background dark:bg-dada-darkBg p-6">
+  <div class="max-w-2xl mx-auto bg-white dark:bg-zinc-800 shadow-lg rounded-lg p-6 space-y-6">
+    <h2 class="text-2xl font-bold text-dada-text dark:text-white mb-2">
+      <%= @share.persisted? ? "Edit Your Share" : "Create a New Share" %>
+    </h2>
+
+    <%= form_with model: @share,
+                  url: @share.persisted? ? web_share_path(@share) : web_shares_path,
+                  local: true,
+                  method: @share.persisted? ? :patch : :post,
+                  html: { id: "share-form" } do |f| %>
+
+      <!-- Share Type -->
+      <div class="mb-4">
+        <%= f.label :share_type, "What would you like to share?",
+                    class: "block text-sm font-semibold text-dada-text dark:text-white mb-1" %>
+        <%= f.select :share_type, Share::TYPES, { selected: @share.share_type },
+                     class: "block w-full mt-1 border border-gray-300 dark:border-zinc-600
+                  bg-white dark:bg-zinc-700 text-dada-text dark:text-white rounded px-3 py-2" %>
+      </div>
+
+      <!-- Title -->
+      <div class="mb-4">
+        <%= f.label :title, class: "block text-sm font-medium text-dada-text dark:text-white" %>
+        <%= f.text_field :title,
+                         class: "w-full mt-1 px-3 py-2 rounded border border-gray-300 dark:border-zinc-600
+                  bg-white dark:bg-zinc-700 text-dada-text dark:text-white" %>
+      </div>
+
+      <!-- Content -->
+      <div class="mb-4">
+        <%= f.label :content, class: "block text-sm font-medium text-dada-text dark:text-white" %>
+        <%= f.text_area :content, rows: 4,
+                        class: "w-full mt-1 px-3 py-2 rounded border border-gray-300 dark:border-zinc-600
+                  bg-white dark:bg-zinc-700 text-dada-text dark:text-white" %>
+      </div>
+
+      <!-- Image URLs -->
+      <div class="mb-4">
+        <%= f.label :image_urls, "Image URLs (comma separated)",
+                    class: "block text-sm font-medium text-dada-text dark:text-white" %>
+        <%= f.text_field :image_urls,
+                         class: "w-full mt-1 px-3 py-2 rounded border border-gray-300 dark:border-zinc-600
+                  bg-white dark:bg-zinc-700 text-dada-text dark:text-white" %>
+      </div>
+
+      <!-- Video URL with Live Preview -->
+      <div class="mb-6">
+        <%= f.label :video_url, "Video URL (YouTube link)",
+                    class: "block text-sm font-medium text-dada-text dark:text-white" %>
+        <%= f.text_field :video_url,
+                         id: "video_url_field",
+                         placeholder: "https://www.youtube.com/watch?v=abc123",
+                         value: @share.video_url,
+                         class: "w-full mt-1 px-3 py-2 rounded border border-gray-300 dark:border-zinc-600
+                  bg-white dark:bg-zinc-700 text-dada-text dark:text-white" %>
+
+        <div id="video-preview" class="mt-3 hidden">
+          <div class="aspect-w-16 aspect-h-9">
+            <iframe id="video-iframe"
+                    class="w-full h-full rounded"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visibility -->
+      <div class="mb-4">
+        <%= f.label :visibility, class: "block text-sm font-medium text-dada-text dark:text-white" %>
+        <%= f.select :visibility,
+                     Share.visibilities.keys.map { |v| [v.titleize, v] },
+                     { selected: @share.visibility },
+                     class: "block w-full mt-1 border border-gray-300 dark:border-zinc-600
+                  bg-white dark:bg-zinc-700 text-dada-text dark:text-white rounded px-3 py-2" %>
+      </div>
+
+      <!-- Submit -->
+      <%= f.submit(@share.persisted? ? "Update Share" : "Share Now",
+                   class: "bg-dada-primary text-white font-semibold px-6 py-2 rounded hover:bg-dada-accent transition") %>
+
+    <% end %>
+  </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const videoInput = document.getElementById("video_url_field");
+        const previewContainer = document.getElementById("video-preview");
+        const iframe = document.getElementById("video-iframe");
+
+        const updatePreview = () => {
+            const url = videoInput.value.trim();
+            if (!url) {
+                previewContainer.classList.add("hidden");
+                iframe.src = "";
+                return;
+            }
+
+            let embedUrl;
+            if (url.includes("youtube.com/watch?v=")) {
+                embedUrl = url.replace("watch?v=", "embed/");
+            } else if (url.includes("youtu.be/")) {
+                embedUrl = url.replace("youtu.be/", "www.youtube.com/embed/");
+            } else {
+                embedUrl = url; // fallback
+            }
+
+            iframe.src = embedUrl;
+            previewContainer.classList.remove("hidden");
+        };
+
+        // Show preview on load if already has a URL (edit mode)
+        updatePreview();
+
+        // Update preview on input
+        videoInput.addEventListener("input", updatePreview);
+    });
+</script>
