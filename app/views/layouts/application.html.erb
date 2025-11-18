@@ -5,27 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><%= content_for?(:title) ? yield(:title) : "Dada" %></title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-      tailwind.config = {
-          darkMode: 'class',
-          theme: {
-              extend: {
-                  colors: {
-                      dada: {
-                          primary: '#E84D4D',
-                          secondary: '#FFB6A9',
-                          background: '#FFEDE6',
-                          text: '#5E2A35',
-                          subtle: '#8E4B50',
-                          darkBg: '#1A1A1A',
-                          accent: '#F17E7E'
-                      }
-                  }
-              }
-          }
-      }
-  </script>
+  <!-- Use prebuilt Tailwind CSS from app/assets/builds instead of the CDN in production -->
+  <%= stylesheet_link_tag "tailwind", data: { turbo_track: "reload" } %>
 
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>

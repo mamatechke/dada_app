@@ -37,7 +37,7 @@
       <!-- Avatar or Login -->
       <div class="hidden md:block">
         <% if user_signed_in? %>
-          <%= link_to main_app.web_profile_path, class: "flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:ring-2 hover:ring-dada-primary transition" do %>
+          <%= link_to web_profile_path, class: "flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:ring-2 hover:ring-dada-primary transition" do %>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                  viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                  class="w-6 h-6 text-dada-text dark:text-white">
@@ -71,6 +71,7 @@
     <ul class="px-4 py-4 space-y-2 text-base font-medium">
       <li><%= link_to "Circles", web_circles_path, class: "block py-2 text-dada-text dark:text-white hover:text-dada-primary" %></li>
       <li><%= link_to "Resources", web_contents_path, class: "block py-2 text-dada-text dark:text-white hover:text-dada-primary" %></li>
+      <li><%= link_to "Dada", web_chatbot_path, class: "block py-2 text-dada-text dark:text-white hover:text-dada-primary" %></li>
       <% if user_signed_in? %>
         <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "block py-2 text-red-600 dark:text-red-400 hover:underline" %></li>
       <% else %>

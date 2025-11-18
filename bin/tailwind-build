@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
 # bin/tailwind-build
-echo "Building Tailwind → app/assets/builds/application.css"
+set -euo pipefail
 
-./bin/tailwindcss \
-  -i ./app/assets/stylesheets/application.tailwind.css \
-  -o ./app/assets/builds/application.css \
-  --minify
+echo "Building Tailwind → app/assets/builds/tailwind.css"
+
+TAILWIND_BIN="./bin/tailwindcss"
+INPUT="./app/assets/stylesheets/application.tailwind.css"
+OUTPUT="./app/assets/builds/tailwind.css"
+
+if [ -x "$TAILWIND_BIN" ]; then
+  "$TAILWIND_BIN" -i "$INPUT" -o "$OUTPUT" --minify
+else
+  # Use npx as a fallback so developers without a local binary can still build
+  echo "./bin/tailwindcss not found, falling back to npx tailwindcss (this may download packages)."
+  npx tailwindcss -i "$INPUT" -o "$OUTPUT" --minify
+fi
+
+echo "Built → $OUTPUT"

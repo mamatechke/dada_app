@@ -10,8 +10,7 @@ Rails.application.routes.draw do
     post "onboarding/submit", to: "onboarding#submit"
     get "theme_preview", to: "theme_preview#index"
     get "/profile", to: "profiles#show", as: :profile
-
-
+    get "chatbot", to: "chatbot#index", as: :chatbot
 
     # ✅ This defines web_circles_path and web_contents_path
     resources :circles, only: [ :index, :show ]
