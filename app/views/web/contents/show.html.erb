@@ -1,4 +1,67 @@
-<div>
-  <h1 class="font-bold text-4xl">Web::Contents#show</h1>
-  <p>Find me in app/views/web/contents/show.html.erb</p>
+<div class="min-h-screen bg-dada-background dark:bg-dada-darkBg">
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="mb-6">
+      <%= link_to "← Back to Library", web_contents_path, class: "text-dada-primary hover:underline text-sm" %>
+    </div>
+
+    <article class="bg-white dark:bg-zinc-800 rounded-lg shadow p-8 mb-8">
+      <div class="mb-6">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-sm bg-dada-secondary dark:bg-zinc-700 px-3 py-1 rounded">
+            <%= @content.content_type&.capitalize || 'Article' %>
+          </span>
+          <% if @content.stage_tags.present? %>
+            <% @content.stage_tags.first(2).each do |tag| %>
+              <span class="text-sm bg-dada-background dark:bg-zinc-900 text-dada-text dark:text-zinc-300 px-3 py-1 rounded">
+                <%= tag %>
+              </span>
+            <% end %>
+          <% end %>
+        </div>
+        <h1 class="text-4xl font-bold text-dada-text dark:text-white mb-4">
+          <%= @content.title %>
+        </h1>
+        <div class="flex items-center text-sm text-dada-subtle dark:text-zinc-500">
+          <span><%= @content.view_count %> views</span>
+          <span class="mx-2">•</span>
+          <span><%= @content.created_at.strftime("%B %d, %Y") %></span>
+        </div>
+      </div>
+
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <%= simple_format(@content.body) %>
+      </div>
+
+      <% if @content.symptom_tags.present? %>
+        <div class="mt-8 pt-6 border-t border-gray-200 dark:border-zinc-700">
+          <p class="text-sm font-semibold text-dada-text dark:text-white mb-2">Related symptoms:</p>
+          <div class="flex flex-wrap gap-2">
+            <% @content.symptom_tags.each do |symptom| %>
+              <span class="text-sm bg-dada-background dark:bg-zinc-900 text-dada-text dark:text-zinc-300 px-3 py-1 rounded">
+                <%= symptom %>
+              </span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </article>
+
+    <% if @related_contents.any? %>
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-dada-text dark:text-white mb-4">Related Content</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <% @related_contents.each do |related| %>
+            <%= link_to web_content_path(related), class: "block bg-white dark:bg-zinc-800 rounded-lg shadow hover:shadow-lg transition p-4" do %>
+              <h3 class="font-semibold text-dada-text dark:text-white mb-2">
+                <%= related.title %>
+              </h3>
+              <p class="text-sm text-dada-subtle dark:text-zinc-400">
+                <%= related.body.to_s.truncate(80) %>
+              </p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

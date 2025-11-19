@@ -1,0 +1,50 @@
+<div class="min-h-screen bg-dada-background dark:bg-dada-darkBg">
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-dada-text dark:text-white mb-2">Verified Providers</h1>
+      <p class="text-dada-subtle dark:text-zinc-400">
+        Trusted professionals to support you through your menopause journey
+      </p>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-6">
+      <%= link_to "All Categories", web_providers_path, class: "px-4 py-2 rounded-lg #{params[:category].blank? ? 'bg-dada-primary text-white' : 'bg-white dark:bg-zinc-800 text-dada-text dark:text-white'}" %>
+      <% Provider::CATEGORIES.each do |category| %>
+        <%= link_to category, web_providers_path(category: category), class: "px-4 py-2 rounded-lg #{params[:category] == category ? 'bg-dada-primary text-white' : 'bg-white dark:bg-zinc-800 text-dada-text dark:text-white'}" %>
+      <% end %>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% @providers.each do |provider| %>
+        <%= link_to web_provider_path(provider), class: "block bg-white dark:bg-zinc-800 rounded-lg shadow hover:shadow-lg transition p-6" do %>
+          <div class="flex items-start justify-between mb-3">
+            <h2 class="text-xl font-bold text-dada-text dark:text-white"><%= provider.name %></h2>
+            <% if provider.verified %>
+              <span class="text-xs bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 px-2 py-1 rounded flex-shrink-0">
+                ✓ Verified
+              </span>
+            <% end %>
+          </div>
+
+          <p class="text-dada-primary font-semibold mb-3"><%= provider.category %></p>
+
+          <p class="text-dada-subtle dark:text-zinc-400 mb-4">
+            <%= provider.description.to_s.truncate(120) %>
+          </p>
+
+          <div class="flex items-center text-sm text-dada-subtle dark:text-zinc-500 border-t border-gray-200 dark:border-zinc-700 pt-3">
+            <span class="mr-2">📍</span>
+            <span><%= provider.location %>, <%= provider.country %></span>
+          </div>
+        <% end %>
+      <% end %>
+
+      <% if @providers.empty? %>
+        <div class="col-span-3 text-center py-12">
+          <p class="text-dada-subtle dark:text-zinc-400 text-lg">No providers found.</p>
+          <p class="text-dada-subtle dark:text-zinc-500 text-sm mt-2">We're working on bringing more verified providers to your area!</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

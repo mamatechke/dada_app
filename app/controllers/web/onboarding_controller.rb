@@ -42,23 +42,23 @@ module Web
       session[:stage] = params[:stage] if params[:stage]
       session[:country] = params[:country] if params[:country]
 
-      # Skip symptoms if Ally
       if session[:stage] == "Ally"
         session[:symptoms] = []
-        redirect_to web_contents_path(stage: "Ally"), notice: "Welcome, ally! Here are some ways to support." and return
-      end
-
-      # Non-ally users
-      session[:symptoms] = params[:symptoms] if params[:symptoms]
-
-      case session[:stage]
-      when "Perimenopause", "Menopause", "Post-menopause"
-        redirect_to web_contents_path(stage: session[:stage]), notice: "Welcome! We’ve curated resources for you." and return
-      when "Not sure"
-        redirect_to web_contents_path(stage: "General"), notice: "Explore general guidance to help you discover your path." and return
       else
-        redirect_to web_home_index_path, alert: "Something went wrong. Please try again."
+        session[:symptoms] = params[:symptoms] if params[:symptoms]
       end
+
+      if user_signed_in?
+        profile = current_user.user_profile || current_user.build_user_profile
+        profile.update(
+          stage: session[:stage],
+          symptoms: session[:symptoms] || [],
+          country: session[:country],
+          locale: I18n.locale.to_s
+        )
+      end
+
+      redirect_to dashboard_path, notice: "Welcome! Your personalized dashboard is ready."
     end
 
     private

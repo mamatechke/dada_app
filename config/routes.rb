@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  get "dashboard", to: "web/dashboard#index", as: :dashboard
+
   namespace :web do
     get "theme_preview/index"
     get "onboarding/step1", to: "onboarding#step1"
@@ -12,12 +15,27 @@ Rails.application.routes.draw do
     get "/profile", to: "profiles#show", as: :profile
     get "chatbot", to: "chatbot#index", as: :chatbot
 
-    # ✅ This defines web_circles_path and web_contents_path
-    resources :circles, only: [ :index, :show ]
-    resources :contents, only: [ :new, :create, :index, :show ]
+    resources :circles, only: [ :index, :show ] do
+      resources :posts, only: [ :create ]
+    end
+    resources :contents, only: [ :index, :show ] do
+      member do
+        post :track_view
+      end
+    end
+    resources :providers, only: [ :index, :show ] do
+      member do
+        post :track_contact
+      end
+    end
     resources :shares
   end
 
   get "home/index"
+
+  authenticated :user do
+    root to: "web/dashboard#index", as: :authenticated_root
+  end
+
   root "home#index"
 end

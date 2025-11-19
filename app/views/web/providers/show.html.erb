@@ -1,0 +1,54 @@
+<div class="min-h-screen bg-dada-background dark:bg-dada-darkBg">
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="mb-6">
+      <%= link_to "← Back to Providers", web_providers_path, class: "text-dada-primary hover:underline text-sm" %>
+    </div>
+
+    <div class="bg-white dark:bg-zinc-800 rounded-lg shadow p-8">
+      <div class="flex items-start justify-between mb-6">
+        <div>
+          <h1 class="text-3xl font-bold text-dada-text dark:text-white mb-2">
+            <%= @provider.name %>
+          </h1>
+          <p class="text-xl text-dada-primary font-semibold"><%= @provider.category %></p>
+        </div>
+        <% if @provider.verified %>
+          <span class="text-sm bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 px-3 py-2 rounded flex-shrink-0">
+            ✓ Verified Provider
+          </span>
+        <% end %>
+      </div>
+
+      <div class="mb-8">
+        <div class="flex items-center text-dada-subtle dark:text-zinc-400 mb-4">
+          <span class="mr-2">📍</span>
+          <span><%= @provider.location %>, <%= @provider.country %></span>
+        </div>
+
+        <div class="prose prose-lg dark:prose-invert max-w-none">
+          <%= simple_format(@provider.description) %>
+        </div>
+      </div>
+
+      <% if @provider.contact_info.present? %>
+        <div class="border-t border-gray-200 dark:border-zinc-700 pt-6">
+          <h2 class="text-xl font-bold text-dada-text dark:text-white mb-4">Get in Touch</h2>
+          <div class="bg-dada-background dark:bg-zinc-900 rounded-lg p-6">
+            <p class="text-dada-text dark:text-white mb-4">
+              <%= @provider.contact_info %>
+            </p>
+            <%= button_to "Track Contact", track_contact_web_provider_path(@provider),
+                method: :post,
+                data: { turbo: false },
+                class: "bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-lg transition",
+                onclick: "this.disabled=true; this.value='Contact Tracked'; return true;" %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="mt-6 text-sm text-dada-subtle dark:text-zinc-500">
+        <p>This provider has been verified by DADA. However, please do your own research and choose what feels right for you.</p>
+      </div>
+    </div>
+  </div>
+</div>

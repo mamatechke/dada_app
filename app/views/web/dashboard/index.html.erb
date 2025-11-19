@@ -1,0 +1,127 @@
+<div class="min-h-screen bg-dada-background dark:bg-dada-darkBg">
+  <div class="max-w-7xl mx-auto px-4 py-8">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-dada-text dark:text-white mb-2">
+        Welcome back, <%= current_user.email.split('@').first.capitalize %>
+      </h1>
+      <% if @profile&.stage %>
+        <p class="text-dada-subtle dark:text-zinc-400">
+          Your journey: <span class="font-semibold text-dada-primary"><%= @profile.stage %></span>
+          <% if @profile.country %>
+            • <%= @profile.country %>
+          <% end %>
+        </p>
+      <% else %>
+        <p class="text-dada-subtle dark:text-zinc-400">
+          <%= link_to "Complete your profile", web_onboarding_step1_path, class: "text-dada-primary hover:underline" %> to get personalized content
+        </p>
+      <% end %>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+      <div class="bg-white dark:bg-zinc-800 rounded-lg shadow p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-semibold text-dada-text dark:text-white">Content Library</h3>
+          <%= link_to "View All", web_contents_path, class: "text-sm text-dada-primary hover:underline" %>
+        </div>
+        <p class="text-2xl font-bold text-dada-primary"><%= Content.published.count %></p>
+        <p class="text-sm text-dada-subtle dark:text-zinc-400">Articles & guides</p>
+      </div>
+
+      <div class="bg-white dark:bg-zinc-800 rounded-lg shadow p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-semibold text-dada-text dark:text-white">Community Circles</h3>
+          <%= link_to "Explore", web_circles_path, class: "text-sm text-dada-primary hover:underline" %>
+        </div>
+        <p class="text-2xl font-bold text-dada-primary"><%= Circle.count %></p>
+        <p class="text-sm text-dada-subtle dark:text-zinc-400">Support groups</p>
+      </div>
+
+      <div class="bg-white dark:bg-zinc-800 rounded-lg shadow p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-semibold text-dada-text dark:text-white">Verified Providers</h3>
+          <%= link_to "Browse", web_providers_path, class: "text-sm text-dada-primary hover:underline" %>
+        </div>
+        <p class="text-2xl font-bold text-dada-primary"><%= Provider.verified.count %></p>
+        <p class="text-sm text-dada-subtle dark:text-zinc-400">Trusted professionals</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl font-bold text-dada-text dark:text-white">For You</h2>
+          <%= link_to "See all content →", web_contents_path, class: "text-dada-primary hover:underline" %>
+        </div>
+        <div class="space-y-4">
+          <% @recommended_contents.each do |content| %>
+            <%= link_to web_content_path(content), class: "block bg-white dark:bg-zinc-800 rounded-lg shadow hover:shadow-md transition p-4" do %>
+              <h3 class="font-semibold text-dada-text dark:text-white mb-2"><%= content.title %></h3>
+              <p class="text-sm text-dada-subtle dark:text-zinc-400 mb-2">
+                <%= content.body.to_s.truncate(120) %>
+              </p>
+              <div class="flex items-center text-xs text-dada-subtle dark:text-zinc-500">
+                <span class="bg-dada-secondary dark:bg-zinc-700 px-2 py-1 rounded mr-2">
+                  <%= content.content_type&.capitalize || 'Article' %>
+                </span>
+                <span><%= content.view_count %> views</span>
+              </div>
+            <% end %>
+          <% end %>
+          <% if @recommended_contents.empty? %>
+            <p class="text-dada-subtle dark:text-zinc-400">No content available yet. Check back soon!</p>
+          <% end %>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl font-bold text-dada-text dark:text-white">Community</h2>
+          <%= link_to "Join circles →", web_circles_path, class: "text-dada-primary hover:underline" %>
+        </div>
+        <div class="space-y-4">
+          <% @relevant_circles.each do |circle| %>
+            <%= link_to web_circle_path(circle), class: "block bg-white dark:bg-zinc-800 rounded-lg shadow hover:shadow-md transition p-4" do %>
+              <h3 class="font-semibold text-dada-text dark:text-white mb-2"><%= circle.name %></h3>
+              <p class="text-sm text-dada-subtle dark:text-zinc-400 mb-2">
+                <%= circle.description.to_s.truncate(100) %>
+              </p>
+              <div class="flex items-center text-xs text-dada-subtle dark:text-zinc-500">
+                <span class="mr-3"><%= circle.member_count %> members</span>
+                <span><%= circle.post_count %> posts</span>
+              </div>
+            <% end %>
+          <% end %>
+          <% if @relevant_circles.empty? %>
+            <p class="text-dada-subtle dark:text-zinc-400">No circles available yet.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <% if @nearby_providers.any? %>
+      <div class="mt-8">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl font-bold text-dada-text dark:text-white">Verified Providers Near You</h2>
+          <%= link_to "See all →", web_providers_path, class: "text-dada-primary hover:underline" %>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <% @nearby_providers.each do |provider| %>
+            <%= link_to web_provider_path(provider), class: "block bg-white dark:bg-zinc-800 rounded-lg shadow hover:shadow-md transition p-4" do %>
+              <div class="flex items-start justify-between mb-2">
+                <h3 class="font-semibold text-dada-text dark:text-white"><%= provider.name %></h3>
+                <% if provider.verified %>
+                  <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Verified</span>
+                <% end %>
+              </div>
+              <p class="text-sm text-dada-primary mb-2"><%= provider.category %></p>
+              <p class="text-sm text-dada-subtle dark:text-zinc-400">
+                <%= provider.location %>, <%= provider.country %>
+              </p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
