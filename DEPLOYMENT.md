@@ -1,37 +1,39 @@
 # DADA Deployment Instructions for Render
 
-## Prerequisites
-- Render account
-- Supabase project (already configured)
-- PostgreSQL database URL from Supabase
+## ✅ Deployment Fix Applied
 
-## Environment Variables for Render
+**Issue Fixed:** The npm error has been resolved by adding:
+- `Procfile` for Render
+- `package.json` to satisfy npm requirement
+- `bin/render-build.sh` build script
+- `render.yaml` configuration
 
-Add these environment variables in your Render dashboard:
+**See `RENDER_DEPLOYMENT.md` for detailed step-by-step instructions.**
 
-1. **DATABASE_URL** (Required)
-   ```
-   postgres://[username]:[password]@[host]:[port]/[database]
-   ```
-   Get this from your Supabase project settings under Database > Connection string > URI
+## Quick Setup
 
-2. **RAILS_MASTER_KEY** (Required)
-   Located in `config/master.key` file
+### 1. Environment Variables
 
-3. **RAILS_ENV**
-   ```
-   production
-   ```
+Add these in your Render dashboard:
 
-4. **RAILS_SERVE_STATIC_FILES**
-   ```
-   true
-   ```
+**DATABASE_URL** (Required)
+```
+postgresql://postgres.[project-ref]:[password]@[host].supabase.com:6543/postgres
+```
+Get from Supabase Dashboard → Project Settings → Database → Connection String (Session pooler)
 
-5. **RAILS_LOG_TO_STDOUT**
-   ```
-   true
-   ```
+**RAILS_MASTER_KEY** (Required)
+Located in `config/master.key` file
+
+**RAILS_ENV**
+```
+production
+```
+
+**RACK_ENV**
+```
+production
+```
 
 ## Supabase Configuration
 
@@ -47,15 +49,19 @@ Sample data has been seeded including:
 - 5 educational content articles
 - 10 verified providers in Kenya
 
-## Build Command for Render
+### 2. Build & Deploy Commands
+
+**Build Command:**
 ```bash
-bundle install && bundle exec rake assets:precompile && bundle exec rake assets:clean
+./bin/render-build.sh
 ```
 
-## Start Command for Render
+**Start Command:**
 ```bash
 bundle exec puma -C config/puma.rb
 ```
+
+Or use the included `render.yaml` file for automatic configuration.
 
 ## Post-Deployment Checklist
 

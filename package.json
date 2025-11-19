@@ -1,0 +1,7 @@
+{
+  "name": "dada",
+  "private": true,
+  "scripts": {
+    "build": "echo 'No npm build needed for Rails'"
+  }
+}
