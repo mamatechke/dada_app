@@ -1,7 +1,7 @@
 class CreateUserProfiles < ActiveRecord::Migration[8.0]
   def change
     create_table :user_profiles do |t|
-      t.references :user, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true, index: { unique: true }
       t.string :stage
       t.text :symptoms
       t.string :country
@@ -10,7 +10,6 @@ class CreateUserProfiles < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
-    add_index :user_profiles, :user_id, unique: true
     add_index :user_profiles, :anonymous_handle, unique: true
   end
 end
