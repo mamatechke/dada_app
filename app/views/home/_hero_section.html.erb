@@ -14,16 +14,16 @@
 
     <div class="flex flex-col sm:flex-row justify-center gap-4 mb-6">
       <% if user_signed_in? %>
-        <%= link_to "Start Your Journey", web_dashboard_path,
+        <%= link_to "Go to Dashboard", dashboard_path,
                     class: "inline-block bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-lg transition" %>
 
-        <%= link_to "Explore Stories", web_circles_path,
+        <%= link_to "Explore Circles", web_circles_path,
                     class: "inline-block border border-dada-primary text-dada-primary hover:bg-dada-primary hover:text-white font-semibold px-6 py-3 rounded-lg transition" %>
       <% else %>
-        <%= link_to "Start Your Journey", new_user_registration_path,
+        <%= link_to "Start Your Journey", web_onboarding_step1_path,
                     class: "inline-block bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-lg transition" %>
 
-        <%= link_to "Explore Stories", root_path(anchor: "stories"),
+        <%= link_to "Explore Resources", web_contents_path,
                     class: "inline-block border border-dada-primary text-dada-primary dark:text-white dark:border-white hover:bg-dada-primary hover:text-white dark:hover:bg-white dark:hover:text-dada-text font-semibold px-6 py-3 rounded-lg transition" %>
       <% end %>
     </div>

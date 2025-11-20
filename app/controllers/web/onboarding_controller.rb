@@ -1,5 +1,6 @@
 module Web
   class OnboardingController < ApplicationController
+    skip_before_action :authenticate_user!
     before_action :initialize_onboarding
 
     def step1; end
@@ -56,9 +57,12 @@ module Web
           country: session[:country],
           locale: I18n.locale.to_s
         )
+        redirect_to dashboard_path, notice: "Welcome! Your personalized dashboard is ready."
+      else
+        # Store return path for after signup
+        session[:return_to] = dashboard_path
+        redirect_to new_user_registration_path, notice: "Create an account to save your personalized experience!"
       end
-
-      redirect_to dashboard_path, notice: "Welcome! Your personalized dashboard is ready."
     end
 
     private
