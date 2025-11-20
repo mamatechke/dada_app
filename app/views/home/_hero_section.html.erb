@@ -13,11 +13,19 @@
     </p>
 
     <div class="flex flex-col sm:flex-row justify-center gap-4 mb-6">
-      <%= link_to "Start Your Journey", web_onboarding_step1_path,
-                  class: "inline-block bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-lg transition" %>
+      <% if user_signed_in? %>
+        <%= link_to "Start Your Journey", web_dashboard_path,
+                    class: "inline-block bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-lg transition" %>
 
-      <%= link_to "Explore Stories", web_circles_path,
-                  class: "inline-block border border-dada-primary text-dada-primary hover:bg-dada-primary hover:text-white font-semibold px-6 py-3 rounded-lg transition" %>
+        <%= link_to "Explore Stories", web_circles_path,
+                    class: "inline-block border border-dada-primary text-dada-primary hover:bg-dada-primary hover:text-white font-semibold px-6 py-3 rounded-lg transition" %>
+      <% else %>
+        <%= link_to "Start Your Journey", new_user_registration_path,
+                    class: "inline-block bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-lg transition" %>
+
+        <%= link_to "Explore Stories", root_path(anchor: "stories"),
+                    class: "inline-block border border-dada-primary text-dada-primary dark:text-white dark:border-white hover:bg-dada-primary hover:text-white dark:hover:bg-white dark:hover:text-dada-text font-semibold px-6 py-3 rounded-lg transition" %>
+      <% end %>
     </div>
 
     <div class="flex flex-col sm:flex-row justify-center gap-4 text-sm text-dada-subtle dark:text-zinc-400">

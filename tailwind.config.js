@@ -18,7 +18,11 @@ export default {
                 dada: {
                     primary: '#E84D4D',
                     secondary: '#FFB6A9',
+                    accent: '#D64040',
                     text: '#5E2A35',
+                    subtle: '#8B6D76',
+                    background: '#FFEDE6',
+                    darkBg: '#1a1a1a',
                 },
             },
         },
