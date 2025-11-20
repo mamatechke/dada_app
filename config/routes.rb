@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get "theme_preview", to: "theme_preview#index"
     get "/profile", to: "profiles#show", as: :profile
     get "chatbot", to: "chatbot#index", as: :chatbot
+    post "chatbot/send_message", to: "chatbot#send_message"
 
     resources :circles, only: [ :index, :show ] do
       resources :posts, only: [ :create ]
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
       end
     end
     resources :shares
+    resources :saved_contents, only: [ :index, :create, :destroy ]
   end
 
   get "home/index"

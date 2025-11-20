@@ -1,8 +1,8 @@
 class Web::CirclesController < ApplicationController
-  before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @circles = if current_user.user_profile&.stage.present?
+    @circles = if user_signed_in? && current_user.user_profile&.stage.present?
       Circle.for_stage(current_user.user_profile.stage).by_activity
     else
       Circle.by_activity
@@ -12,6 +12,6 @@ class Web::CirclesController < ApplicationController
   def show
     @circle = Circle.find(params[:id])
     @posts = @circle.posts.recent.limit(50)
-    @new_post = Post.new
+    @new_post = Post.new if user_signed_in?
   end
 end

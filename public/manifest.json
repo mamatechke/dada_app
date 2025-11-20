@@ -1,0 +1,20 @@
+{
+  "name": "DADA - Your Menopause Companion",
+  "short_name": "DADA",
+  "description": "Culturally-rooted menopause support, community, and resources",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#C85A54",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "lifestyle", "medical"],
+  "screenshots": []
+}

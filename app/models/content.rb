@@ -2,6 +2,9 @@ class Content < ApplicationRecord
   self.table_name = "contents"
   self.primary_key = "id"
 
+  has_many :saved_contents, dependent: :destroy
+  has_many :users_who_saved, through: :saved_contents, source: :user
+
   scope :published, -> { where(published: true) }
   scope :for_stage, ->(stage) { where("? = ANY(stage_tags)", stage) if stage.present? }
   scope :for_symptom, ->(symptom) { where("? = ANY(symptom_tags)", symptom) if symptom.present? }
@@ -21,5 +24,10 @@ class Content < ApplicationRecord
 
   def increment_view_count!
     increment!(:view_count)
+  end
+
+  def saved_by?(user)
+    return false unless user
+    saved_contents.exists?(user_id: user.id)
   end
 end

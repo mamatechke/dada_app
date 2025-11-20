@@ -1,13 +1,13 @@
 module Web
   class ContentsController < ApplicationController
-    before_action :authenticate_user!
+    skip_before_action :authenticate_user!, only: [:index, :show]
 
     def index
       @contents = Content.published
 
       if params[:stage].present?
         @contents = @contents.for_stage(params[:stage])
-      elsif current_user.user_profile&.stage.present?
+      elsif user_signed_in? && current_user.user_profile&.stage.present?
         @contents = @contents.for_stage(current_user.user_profile.stage)
       end
 
@@ -15,7 +15,8 @@ module Web
         @contents = @contents.for_symptom(params[:symptom])
       end
 
-      @contents = @contents.for_locale(current_user.user_profile&.locale || "en")
+      locale = user_signed_in? ? (current_user.user_profile&.locale || "en") : "en"
+      @contents = @contents.for_locale(locale)
                           .recent
                           .limit(20)
     end

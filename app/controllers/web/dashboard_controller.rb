@@ -13,9 +13,11 @@ module Web
           .limit(6)
 
         @relevant_circles = Circle.for_stage(@profile.stage).by_activity.limit(4)
+        @nudges = Nudge.personalized_for(@profile)
       else
         @recommended_contents = Content.published.for_locale("en").recent.limit(6)
         @relevant_circles = Circle.by_activity.limit(4)
+        @nudges = Nudge.active.by_priority.limit(3)
       end
 
       @nearby_providers = if @profile&.country.present?

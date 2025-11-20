@@ -1,6 +1,6 @@
 module Web
   class ProvidersController < ApplicationController
-    before_action :authenticate_user!
+    skip_before_action :authenticate_user!, only: [:index, :show]
 
     def index
       @providers = Provider.verified
@@ -11,7 +11,7 @@ module Web
 
       if params[:country].present?
         @providers = @providers.by_country(params[:country])
-      elsif current_user.user_profile&.country.present?
+      elsif user_signed_in? && current_user.user_profile&.country.present?
         @providers = @providers.by_country(current_user.user_profile.country)
       end
 
