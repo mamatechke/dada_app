@@ -9,4 +9,7 @@ class PageSection < ApplicationRecord
   SECTION_NAMES = ["hero", "stories", "resources", "chatbot"].freeze
 
   validates :section_name, inclusion: { in: SECTION_NAMES }
+
+  # Serialize content_data as JSON for SQLite compatibility
+  serialize :content_data, coder: JSON
 end

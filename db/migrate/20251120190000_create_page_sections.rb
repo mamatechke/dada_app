@@ -3,7 +3,11 @@ class CreatePageSections < ActiveRecord::Migration[8.0]
     create_table :page_sections do |t|
       t.string :section_name, null: false
       t.integer :section_order, default: 0
-      t.jsonb :content_data, default: {}
+      if connection.adapter_name == "PostgreSQL"
+        t.jsonb :content_data, default: {}
+      else
+        t.text :content_data
+      end
       t.boolean :active, default: true
       t.integer :updated_by_id
       t.timestamps
