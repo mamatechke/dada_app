@@ -9,7 +9,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum role: { user: 0, moderator: 1, admin: 2 }
+  enum :role, { user: 0, moderator: 1, admin: 2 }, default: :user
 
   after_create :create_user_profile
 
