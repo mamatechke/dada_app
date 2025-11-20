@@ -1,0 +1,67 @@
+<% content_for :page_title, "Landing Page Editor" %>
+
+<div class="px-4 sm:px-0">
+  <div class="mb-6">
+    <h3 class="text-lg leading-6 font-medium text-gray-900">Manage Landing Page Sections</h3>
+    <p class="mt-1 text-sm text-gray-500">Edit the content displayed on the homepage</p>
+  </div>
+
+  <div class="space-y-4">
+    <% @page_sections.each do |section| %>
+      <div class="bg-white shadow rounded-lg overflow-hidden">
+        <div class="px-6 py-4 flex items-center justify-between border-b border-gray-200">
+          <div class="flex items-center space-x-4">
+            <div>
+              <h3 class="text-lg font-medium text-gray-900 capitalize"><%= section.section_name %> Section</h3>
+              <p class="text-sm text-gray-500">Order: <%= section.section_order %></p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <% if section.active %>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                Active
+              </span>
+            <% else %>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                Inactive
+              </span>
+            <% end %>
+            <%= link_to "Edit", edit_admin_page_section_path(section), class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-dada-primary hover:bg-dada-accent" %>
+          </div>
+        </div>
+
+        <div class="px-6 py-4 bg-gray-50">
+          <% case section.section_name %>
+          <% when "hero" %>
+            <div class="space-y-2 text-sm">
+              <p><strong>Badge:</strong> <%= section.content_data["badge_text"] %></p>
+              <p><strong>Headline:</strong> <%= strip_tags(section.content_data["headline"]) %></p>
+              <p><strong>Features:</strong> <%= section.content_data["feature_highlights"]&.join(", ") %></p>
+            </div>
+          <% when "stories" %>
+            <div class="space-y-2 text-sm">
+              <p><strong>Title:</strong> <%= strip_tags(section.content_data["section_title"]) %></p>
+              <p><strong>Stories Count:</strong> <%= section.content_data["stories"]&.length || 0 %></p>
+            </div>
+          <% when "resources" %>
+            <div class="space-y-2 text-sm">
+              <p><strong>Title:</strong> <%= strip_tags(section.content_data["section_title"]) %></p>
+              <p><strong>Resources Count:</strong> <%= section.content_data["resources"]&.length || 0 %></p>
+            </div>
+          <% when "chatbot" %>
+            <div class="space-y-2 text-sm">
+              <p><strong>Title:</strong> <%= section.content_data["section_title"] %></p>
+              <p><strong>Demo Messages:</strong> <%= section.content_data["demo_messages"]&.length || 0 %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @page_sections.empty? %>
+    <div class="text-center py-12 bg-white rounded-lg shadow">
+      <p class="text-gray-500">No page sections found. Run <code>rails db:seed</code> to create default sections.</p>
+    </div>
+  <% end %>
+</div>

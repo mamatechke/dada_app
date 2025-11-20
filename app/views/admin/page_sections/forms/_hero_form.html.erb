@@ -1,0 +1,23 @@
+<div class="space-y-6">
+  <div>
+    <%= f.label :badge_text, "Badge Text", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :badge_text, value: section.content_data["badge_text"], class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm" %>
+  </div>
+
+  <div>
+    <%= f.label :headline, "Headline", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_area :headline, value: section.content_data["headline"], rows: 2, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm" %>
+    <p class="mt-1 text-sm text-gray-500">Use &lt;span class='text-dada-primary'&gt;word&lt;/span&gt; to highlight words in primary color</p>
+  </div>
+
+  <div>
+    <%= f.label :description, "Description", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_area :description, value: section.content_data["description"], rows: 4, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm" %>
+  </div>
+
+  <div>
+    <%= f.label :feature_highlights, "Feature Highlights (one per line)", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_area :feature_highlights, value: section.content_data["feature_highlights"]&.join("\n"), rows: 3, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm" %>
+    <p class="mt-1 text-sm text-gray-500">Enter each feature on a new line</p>
+  </div>
+</div>

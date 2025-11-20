@@ -12,6 +12,13 @@ Rails.application.routes.draw do
     resources :users, only: [ :index, :show, :edit, :update, :destroy ]
   end
 
+  # Mount Thredded (forums/circles)
+  # Note: After running bundle install, execute:
+  # 1. rails generate thredded:install
+  # 2. rails db:migrate
+  # 3. Uncomment the line below and comment out custom circles routes
+  # mount Thredded::Engine => '/circles'
+
   namespace :web do
     get "theme_preview/index"
     get "onboarding/step1", to: "onboarding#step1"

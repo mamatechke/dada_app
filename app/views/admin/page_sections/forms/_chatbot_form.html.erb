@@ -1,0 +1,26 @@
+<div class="space-y-6">
+  <div>
+    <%= f.label :section_title, "Section Title", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :section_title, value: section.content_data["section_title"], class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm" %>
+  </div>
+
+  <div>
+    <%= f.label :section_subtitle, "Section Subtitle", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_area :section_subtitle, value: section.content_data["section_subtitle"], rows: 2, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm" %>
+  </div>
+
+  <div>
+    <%= f.label :demo_messages, "Demo Messages (JSON format)", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_area :demo_messages, value: JSON.pretty_generate(section.content_data["demo_messages"] || []), rows: 10, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm font-mono text-xs" %>
+    <p class="mt-1 text-sm text-gray-500">
+      Format: Array of objects with sender ("user" or "dada") and text fields.
+      <a href="https://jsonlint.com/" target="_blank" class="text-dada-primary hover:underline">Validate JSON</a>
+    </p>
+  </div>
+
+  <div>
+    <%= f.label :suggested_prompts, "Suggested Prompts (one per line)", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_area :suggested_prompts, value: section.content_data["suggested_prompts"]&.join("\n"), rows: 5, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm" %>
+    <p class="mt-1 text-sm text-gray-500">Enter each prompt on a new line</p>
+  </div>
+</div>

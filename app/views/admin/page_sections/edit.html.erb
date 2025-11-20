@@ -1,0 +1,63 @@
+<% content_for :page_title, "Edit #{@page_section.section_name.capitalize} Section" %>
+
+<div class="px-4 sm:px-0">
+  <div class="mb-6">
+    <%= link_to "← Back to Landing Page", admin_page_sections_path, class: "text-sm text-dada-primary hover:text-dada-accent" %>
+  </div>
+
+  <%= form_with(model: [:admin, @page_section], class: "space-y-6") do |f| %>
+    <% if @page_section.errors.any? %>
+      <div class="rounded-md bg-red-50 p-4">
+        <h3 class="text-sm font-medium text-red-800">
+          <%= pluralize(@page_section.errors.count, "error") %> prohibited this section from being saved:
+        </h3>
+        <ul class="mt-2 text-sm text-red-700 list-disc pl-5">
+          <% @page_section.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <!-- Section Settings -->
+    <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+      <div class="md:grid md:grid-cols-3 md:gap-6">
+        <div class="md:col-span-1">
+          <h3 class="text-lg font-medium leading-6 text-gray-900">Section Settings</h3>
+          <p class="mt-1 text-sm text-gray-500">General settings for this section</p>
+        </div>
+        <div class="mt-5 md:mt-0 md:col-span-2 space-y-6">
+          <div class="flex items-center">
+            <%= f.check_box :active, class: "h-4 w-4 text-dada-primary focus:ring-dada-primary border-gray-300 rounded" %>
+            <%= f.label :active, "Show this section on homepage", class: "ml-2 text-sm font-medium text-gray-700" %>
+          </div>
+
+          <div>
+            <%= f.label :section_order, "Display Order", class: "block text-sm font-medium text-gray-700" %>
+            <%= f.number_field :section_order, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section-Specific Content -->
+    <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+      <div class="md:grid md:grid-cols-3 md:gap-6">
+        <div class="md:col-span-1">
+          <h3 class="text-lg font-medium leading-6 text-gray-900">Section Content</h3>
+          <p class="mt-1 text-sm text-gray-500">Edit the content displayed in this section</p>
+        </div>
+        <div class="mt-5 md:mt-0 md:col-span-2 space-y-6">
+          <%= f.fields_for :content_data, OpenStruct.new(@page_section.content_data) do |cd| %>
+            <%= render "admin/page_sections/forms/#{@page_section.section_name}_form", f: cd, section: @page_section %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-end space-x-3">
+      <%= link_to "Cancel", admin_page_sections_path, class: "bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50" %>
+      <%= f.submit "Update Section", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-dada-primary hover:bg-dada-accent" %>
+    </div>
+  <% end %>
+</div>

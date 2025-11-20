@@ -44,6 +44,7 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 gem "devise"
+gem "thredded", "~> 1.0"
 
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]

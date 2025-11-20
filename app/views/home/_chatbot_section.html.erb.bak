@@ -1,7 +1,3 @@
-<% chatbot_data = @chatbot&.content_data || {} %>
-<% demo_messages = chatbot_data["demo_messages"] || [] %>
-<% suggested_prompts = chatbot_data["suggested_prompts"] || [] %>
-
 <section class="py-12 bg-dada-background dark:bg-dada-darkBg">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -11,10 +7,10 @@
         Gentle Guidance from Dada
       </p>
       <h2 class="text-2xl sm:text-3xl font-bold text-dada-text dark:text-white">
-        <%= chatbot_data["section_title"] || "You're Not Alone on This Journey" %>
+        You're Not Alone on This Journey
       </h2>
       <p class="mt-2 text-dada-subtle dark:text-zinc-400">
-        <%= chatbot_data["section_subtitle"] || "Dada is here to walk beside you — offering culturally‑rooted wisdom, emotional support, and answers when you need them most." %>
+        Dada is here to walk beside you — offering culturally‑rooted wisdom, emotional support, and answers when you need them most.
       </p>
     </div>
 
@@ -22,30 +18,41 @@
     <div class="bg-white dark:bg-zinc-800 shadow-md rounded-lg p-6 flex flex-col h-[500px] sm:h-[600px] overflow-hidden">
 
       <!-- Chat History -->
+      <!-- Chat History with muted background -->
       <div class="flex-1 overflow-y-auto space-y-4 pr-2 bg-gray-50 dark:bg-zinc-900 rounded-md px-4 py-3">
-        <% demo_messages.each do |message| %>
-          <% if message["sender"] == "user" %>
-            <!-- User Message -->
-            <div class="flex justify-end">
-              <div class="bg-dada-primary text-white px-4 py-2 rounded-lg max-w-xs sm:max-w-md text-sm shadow">
-                <%= message["text"] %>
-              </div>
-            </div>
-          <% else %>
-            <!-- Dada Response -->
-            <div class="flex justify-start">
-              <div class="bg-gray-100 dark:bg-zinc-700 text-dada-text dark:text-white px-4 py-2 rounded-lg max-w-xs sm:max-w-md text-sm shadow">
-                <%= message["text"] %>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
+
+        <!-- User Message -->
+        <div class="flex justify-end">
+          <div class="bg-dada-primary text-white px-4 py-2 rounded-lg max-w-xs sm:max-w-md text-sm shadow">
+            I'm feeling really tired all the time. Is this normal?
+          </div>
+        </div>
+
+        <!-- Dada Response -->
+        <div class="flex justify-start">
+          <div class="bg-gray-100 dark:bg-zinc-700 text-dada-text dark:text-white px-4 py-2 rounded-lg max-w-xs sm:max-w-md text-sm shadow">
+            Hi Sis 💛 Feeling tired can be very normal during menopause. Let’s explore if it’s linked to hormonal shifts or sleep changes, okay?
+          </div>
+        </div>
+
+        <!-- Another Dada Response -->
+        <div class="flex justify-start">
+          <div class="bg-gray-100 dark:bg-zinc-700 text-dada-text dark:text-white px-4 py-2 rounded-lg max-w-xs sm:max-w-md text-sm shadow">
+            Would you like tips on natural ways to boost your energy?
+          </div>
+        </div>
+
       </div>
 
       <!-- Suggested Prompts -->
       <div class="mt-4">
         <div class="flex flex-wrap gap-2 mb-4">
-          <% suggested_prompts.each do |question| %>
+          <% [
+               "What’s causing my mood swings?",
+               "Can I manage this naturally?",
+               "Why are my periods changing?",
+               "How do I talk to my daughter about this?"
+             ].each do |question| %>
             <button class="bg-dada-secondary text-dada-text text-sm px-3 py-1 rounded hover:opacity-90 transition">
               <%= question %>
             </button>

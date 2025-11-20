@@ -85,4 +85,102 @@ nudges_data.each do |nudge_attrs|
   end
 end
 
+puts "Creating Page Sections..."
+page_sections_data = [
+  {
+    section_name: "hero",
+    section_order: 1,
+    active: true,
+    content_data: {
+      badge_text: "Culturally-Aware Menopause Support",
+      headline: "Your Journey Through <span class='text-dada-primary'>Midlife</span> Deserves Support",
+      description: "Dada offers personalized, culturally-rooted menopause guidance for African women and the diaspora. Discover insights powered by AI, connect through shared stories, and access resources designed to honor your lived experience.",
+      feature_highlights: ["Culturally Relevant Content", "Personalised Guidance", "Community-Led Stories"]
+    }
+  },
+  {
+    section_name: "stories",
+    section_order: 2,
+    active: true,
+    content_data: {
+      section_title: "Real Women, Real <span class='text-dada-primary'>Journeys</span>",
+      section_subtitle: "Discover how African women are navigating menopause with confidence, wisdom, and sisterhood support. Every story matters.",
+      stories: [
+        {
+          emoji: "🌺",
+          name: "Amara K.",
+          location: "Lagos, Nigeria • Age 52 • Post-menopause",
+          quote: "Finding sisterhood through Dada changed everything. I learned that my night sweats weren't just 'getting older' but a normal part of menopause that I could manage naturally.",
+          tags: ["Night Sweats", "Natural Remedies", "Community"]
+        },
+        {
+          emoji: "🦋",
+          name: "Grace M.",
+          location: "Nairobi, Kenya • Age 48 • Perimenopause",
+          quote: "The AI chat helped me understand my irregular periods weren't something to worry about alone. Now I have strategies that fit my lifestyle and cultural practices.",
+          tags: ["Irregular Periods", "Cultural Practices", "AI Support"]
+        },
+        {
+          emoji: "🌻",
+          name: "Fatou S.",
+          location: "Accra, Ghana • Age 55 • Post-menopause",
+          quote: "As a grandmother, I want to prepare my daughters. Dada gave me the language and knowledge to start these important conversations in our family.",
+          tags: ["Family Conversations", "Intergenerational", "Education"]
+        }
+      ]
+    }
+  },
+  {
+    section_name: "resources",
+    section_order: 3,
+    active: true,
+    content_data: {
+      section_title: "Culturally‑Relevant <span class='text-dada-primary'>Resources</span>",
+      section_subtitle: "Access curated content, expert guidance, and community resources tailored for African women's menopause journey.",
+      resources: [
+        {
+          title: "Understanding Menopause in African Context",
+          type: "Guide",
+          tags: ["Cultural", "Traditional Medicine", "Symptoms"],
+          description: "Comprehensive guide covering menopause symptoms, cultural perspectives, and traditional remedies from across Africa."
+        },
+        {
+          title: "Managing Hot Flashes Naturally",
+          type: "Video Series",
+          tags: ["Hot Flashes", "Expert Advice", "Natural Remedies"],
+          description: "Expert-led video series featuring African herbalists and doctors discussing natural approaches to hot flash management."
+        }
+      ]
+    }
+  },
+  {
+    section_name: "chatbot",
+    section_order: 4,
+    active: true,
+    content_data: {
+      section_title: "You're Not Alone on This Journey",
+      section_subtitle: "Dada is here to walk beside you — offering culturally‑rooted wisdom, emotional support, and answers when you need them most.",
+      demo_messages: [
+        { sender: "user", text: "I'm feeling really tired all the time. Is this normal?" },
+        { sender: "dada", text: "Hi Sis 💛 Feeling tired can be very normal during menopause. Let's explore if it's linked to hormonal shifts or sleep changes, okay?" },
+        { sender: "dada", text: "Would you like tips on natural ways to boost your energy?" }
+      ],
+      suggested_prompts: [
+        "What's causing my mood swings?",
+        "Can I manage this naturally?",
+        "Why are my periods changing?",
+        "How do I talk to my daughter about this?"
+      ]
+    }
+  }
+]
+
+page_sections_data.each do |section_attrs|
+  PageSection.find_or_create_by!(section_name: section_attrs[:section_name]) do |section|
+    section.section_order = section_attrs[:section_order]
+    section.active = section_attrs[:active]
+    section.content_data = section_attrs[:content_data]
+  end
+end
+
 puts "✅ Seed data created successfully!"
