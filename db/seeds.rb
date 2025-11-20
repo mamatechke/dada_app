@@ -1,3 +1,17 @@
+# Seed Admin User
+puts "Creating Admin User..."
+admin_user = User.find_or_initialize_by(email: "admin@dada.com")
+if admin_user.new_record?
+  admin_user.password = "admin123"
+  admin_user.password_confirmation = "admin123"
+  admin_user.role = :admin
+  admin_user.save!
+  puts "✅ Admin user created: admin@dada.com / admin123"
+else
+  admin_user.update(role: :admin) unless admin_user.admin?
+  puts "✅ Admin user already exists"
+end
+
 # Seed Circles
 puts "Creating Circles..."
 circles_data = [

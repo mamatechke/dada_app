@@ -16,4 +16,18 @@ class ApplicationController < ActionController::Base
       web_onboarding_step1_path
     end
   end
+
+  def require_admin!
+    unless current_user&.admin?
+      flash[:alert] = "You are not authorized to access this page."
+      redirect_to root_path
+    end
+  end
+
+  def require_moderator!
+    unless current_user&.moderator?
+      flash[:alert] = "You are not authorized to access this page."
+      redirect_to root_path
+    end
+  end
 end

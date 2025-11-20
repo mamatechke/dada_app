@@ -1,0 +1,159 @@
+<% content_for :page_title, "Admin Dashboard" %>
+
+<div class="px-4 sm:px-0">
+  <!-- Stats Grid -->
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-8">
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+      <div class="p-5">
+        <div class="flex items-center">
+          <div class="flex-1">
+            <dt class="text-sm font-medium text-gray-500 truncate">Total Users</dt>
+            <dd class="mt-1 text-3xl font-semibold text-gray-900"><%= @stats[:users_count] %></dd>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+      <div class="p-5">
+        <div class="flex items-center">
+          <div class="flex-1">
+            <dt class="text-sm font-medium text-gray-500 truncate">Content Items</dt>
+            <dd class="mt-1 text-3xl font-semibold text-gray-900"><%= @stats[:contents_count] %></dd>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+      <div class="p-5">
+        <div class="flex items-center">
+          <div class="flex-1">
+            <dt class="text-sm font-medium text-gray-500 truncate">Circles</dt>
+            <dd class="mt-1 text-3xl font-semibold text-gray-900"><%= @stats[:circles_count] %></dd>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+      <div class="p-5">
+        <div class="flex items-center">
+          <div class="flex-1">
+            <dt class="text-sm font-medium text-gray-500 truncate">Posts</dt>
+            <dd class="mt-1 text-3xl font-semibold text-gray-900"><%= @stats[:posts_count] %></dd>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white overflow-hidden shadow rounded-lg">
+      <div class="p-5">
+        <div class="flex items-center">
+          <div class="flex-1">
+            <dt class="text-sm font-medium text-gray-500 truncate">Providers</dt>
+            <dd class="mt-1 text-3xl font-semibold text-gray-900"><%= @stats[:providers_count] %></dd>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="bg-white shadow rounded-lg p-6 mb-8">
+    <h2 class="text-lg font-medium text-gray-900 mb-4">Quick Actions</h2>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <%= link_to new_admin_content_path, class: "inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-dada-primary hover:bg-dada-accent" do %>
+        <span>Create Content</span>
+      <% end %>
+      <%= link_to admin_page_sections_path, class: "inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-dada-primary hover:bg-dada-accent" do %>
+        <span>Edit Landing Page</span>
+      <% end %>
+      <%= link_to new_admin_provider_path, class: "inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-dada-primary hover:bg-dada-accent" do %>
+        <span>Add Provider</span>
+      <% end %>
+      <%= link_to new_admin_nudge_path, class: "inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-dada-primary hover:bg-dada-accent" do %>
+        <span>Create Nudge</span>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Recent Users -->
+    <div class="bg-white shadow rounded-lg">
+      <div class="px-6 py-4 border-b border-gray-200">
+        <h2 class="text-lg font-medium text-gray-900">Recent Users</h2>
+      </div>
+      <ul class="divide-y divide-gray-200">
+        <% @recent_users.each do |user| %>
+          <li class="px-6 py-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium text-gray-900"><%= user.email %></p>
+                <p class="text-sm text-gray-500">Joined <%= time_ago_in_words(user.created_at) %> ago</p>
+              </div>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                <%= user.role %>
+              </span>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+      <div class="px-6 py-3 bg-gray-50">
+        <%= link_to "View all users →", admin_users_path, class: "text-sm font-medium text-dada-primary hover:text-dada-accent" %>
+      </div>
+    </div>
+
+    <!-- Recent Content -->
+    <div class="bg-white shadow rounded-lg">
+      <div class="px-6 py-4 border-b border-gray-200">
+        <h2 class="text-lg font-medium text-gray-900">Recent Content</h2>
+      </div>
+      <ul class="divide-y divide-gray-200">
+        <% @recent_contents.each do |content| %>
+          <li class="px-6 py-4">
+            <div class="flex items-center justify-between">
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-medium text-gray-900 truncate"><%= content.title %></p>
+                <p class="text-sm text-gray-500"><%= content.content_type&.capitalize || 'Article' %> • <%= content.view_count %> views</p>
+              </div>
+              <% if content.published %>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                  Published
+                </span>
+              <% else %>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                  Draft
+                </span>
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+      <div class="px-6 py-3 bg-gray-50">
+        <%= link_to "View all content →", admin_contents_path, class: "text-sm font-medium text-dada-primary hover:text-dada-accent" %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Posts -->
+  <div class="bg-white shadow rounded-lg mt-6">
+    <div class="px-6 py-4 border-b border-gray-200">
+      <h2 class="text-lg font-medium text-gray-900">Recent Circle Posts</h2>
+    </div>
+    <ul class="divide-y divide-gray-200">
+      <% @recent_posts.each do |post| %>
+        <li class="px-6 py-4">
+          <div class="flex justify-between">
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-gray-900"><%= post.anonymous_handle %> in <%= post.circle.name %></p>
+              <p class="text-sm text-gray-600 mt-1"><%= truncate(post.content, length: 150) %></p>
+              <p class="text-xs text-gray-500 mt-1"><%= time_ago_in_words(post.created_at) %> ago • <%= post.likes_count %> likes</p>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

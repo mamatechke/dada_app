@@ -3,6 +3,15 @@ Rails.application.routes.draw do
 
   get "dashboard", to: "web/dashboard#index", as: :dashboard
 
+  namespace :admin do
+    root to: "dashboard#index"
+    resources :contents
+    resources :page_sections, only: [ :index, :edit, :update ]
+    resources :providers
+    resources :nudges
+    resources :users, only: [ :index, :show, :edit, :update, :destroy ]
+  end
+
   namespace :web do
     get "theme_preview/index"
     get "onboarding/step1", to: "onboarding#step1"

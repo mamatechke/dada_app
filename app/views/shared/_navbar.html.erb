@@ -35,6 +35,11 @@
 
       </button>
 
+      <!-- Admin Link -->
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to "Admin", admin_root_path, class: "text-sm font-medium text-dada-text dark:text-white hover:text-dada-primary transition" %>
+      <% end %>
+
       <!-- Avatar or Login -->
       <div class="hidden md:block">
         <% if user_signed_in? %>

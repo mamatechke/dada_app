@@ -1,0 +1,9 @@
+<% content_for :page_title, "Edit Content" %>
+
+<div class="px-4 sm:px-0">
+  <div class="mb-6">
+    <%= link_to "← Back to Content", admin_contents_path, class: "text-sm text-dada-primary hover:text-dada-accent" %>
+  </div>
+
+  <%= render "form", content: @content %>
+</div>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= content_for?(:title) ? "#{yield(:title)} - DADA Admin" : "DADA Admin" %></title>
+
+  <%= stylesheet_link_tag "tailwind", data: { turbo_track: "reload" } %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+</head>
+
+<body class="h-full">
+  <div class="min-h-full">
+    <!-- Admin Navigation -->
+    <nav class="bg-dada-primary">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <h1 class="text-white text-xl font-bold">DADA Admin</h1>
+            </div>
+            <div class="hidden md:block">
+              <div class="ml-10 flex items-baseline space-x-4">
+                <%= link_to "Dashboard", admin_root_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-md text-sm font-medium #{current_page?(admin_root_path) ? 'bg-dada-accent' : ''}" %>
+                <%= link_to "Content", admin_contents_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-md text-sm font-medium" %>
+                <%= link_to "Landing Page", admin_page_sections_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-md text-sm font-medium" %>
+                <%= link_to "Providers", admin_providers_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-md text-sm font-medium" %>
+                <%= link_to "Nudges", admin_nudges_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-md text-sm font-medium" %>
+                <%= link_to "Users", admin_users_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-md text-sm font-medium" %>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <%= link_to "View Site", root_path, target: "_blank", class: "text-white hover:text-gray-200 text-sm" %>
+            <span class="text-white text-sm"><%= current_user.email %></span>
+            <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "text-white hover:text-gray-200 text-sm" %>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <header class="bg-white shadow">
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <% if flash[:notice] %>
+          <div class="mb-4 rounded-md bg-green-50 p-4">
+            <p class="text-sm text-green-800"><%= flash[:notice] %></p>
+          </div>
+        <% end %>
+        <% if flash[:alert] %>
+          <div class="mb-4 rounded-md bg-red-50 p-4">
+            <p class="text-sm text-red-800"><%= flash[:alert] %></p>
+          </div>
+        <% end %>
+
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+          <%= content_for?(:page_title) ? yield(:page_title) : "Dashboard" %>
+        </h1>
+      </div>
+    </header>
+
+    <main>
+      <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+        <%= yield %>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

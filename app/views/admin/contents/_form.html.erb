@@ -1,0 +1,110 @@
+<%= form_with(model: [:admin, content], class: "space-y-6") do |f| %>
+  <% if content.errors.any? %>
+    <div class="rounded-md bg-red-50 p-4">
+      <div class="flex">
+        <div class="ml-3">
+          <h3 class="text-sm font-medium text-red-800">
+            <%= pluralize(content.errors.count, "error") %> prohibited this content from being saved:
+          </h3>
+          <div class="mt-2 text-sm text-red-700">
+            <ul class="list-disc pl-5 space-y-1">
+              <% content.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Content Information</h3>
+        <p class="mt-1 text-sm text-gray-500">Basic details about this content.</p>
+      </div>
+      <div class="mt-5 md:mt-0 md:col-span-2 space-y-6">
+        <div>
+          <%= f.label :title, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_field :title, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm", placeholder: "Enter content title" %>
+        </div>
+
+        <div>
+          <%= f.label :content_type, "Type", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.select :content_type, Content::CONTENT_TYPES.map { |t| [t.capitalize, t] }, { prompt: "Select type" }, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm" %>
+        </div>
+
+        <div>
+          <%= f.label :locale, "Language", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.select :locale, [["English", "en"], ["French", "fr"], ["Swahili", "sw"]], { selected: content.locale || "en" }, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm" %>
+        </div>
+
+        <div>
+          <%= f.label :body, "Content", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_area :body, rows: 12, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm", placeholder: "Write your content here..." %>
+          <p class="mt-2 text-sm text-gray-500">You can use markdown formatting.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Targeting</h3>
+        <p class="mt-1 text-sm text-gray-500">Select which audiences should see this content.</p>
+      </div>
+      <div class="mt-5 md:mt-0 md:col-span-2 space-y-6">
+        <div>
+          <%= f.label :stage_tags, "Menopause Stages", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <div class="space-y-2">
+            <% Content::STAGES.each do |stage| %>
+              <div class="flex items-center">
+                <%= f.check_box :stage_tags, { multiple: true, checked: content.stage_tags&.include?(stage), class: "h-4 w-4 text-dada-primary focus:ring-dada-primary border-gray-300 rounded" }, stage, nil %>
+                <%= f.label "stage_tags_#{stage.parameterize}", stage, class: "ml-2 text-sm text-gray-700" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div>
+          <%= f.label :symptom_tags, "Symptoms", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <div class="grid grid-cols-2 gap-2">
+            <% Content::SYMPTOMS.each do |symptom| %>
+              <div class="flex items-center">
+                <%= f.check_box :symptom_tags, { multiple: true, checked: content.symptom_tags&.include?(symptom), class: "h-4 w-4 text-dada-primary focus:ring-dada-primary border-gray-300 rounded" }, symptom, nil %>
+                <%= f.label "symptom_tags_#{symptom.parameterize}", symptom, class: "ml-2 text-sm text-gray-700" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Publishing</h3>
+        <p class="mt-1 text-sm text-gray-500">Control the visibility of this content.</p>
+      </div>
+      <div class="mt-5 md:mt-0 md:col-span-2">
+        <div class="flex items-start">
+          <div class="flex items-center h-5">
+            <%= f.check_box :published, class: "h-4 w-4 text-dada-primary focus:ring-dada-primary border-gray-300 rounded" %>
+          </div>
+          <div class="ml-3 text-sm">
+            <%= f.label :published, "Published", class: "font-medium text-gray-700" %>
+            <p class="text-gray-500">Make this content visible to users.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-end space-x-3">
+    <%= link_to "Cancel", admin_contents_path, class: "bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dada-primary" %>
+    <%= f.submit content.new_record? ? "Create Content" : "Update Content", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-dada-primary hover:bg-dada-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dada-primary" %>
+  </div>
+<% end %>
