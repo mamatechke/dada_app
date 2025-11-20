@@ -9,6 +9,7 @@
     <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
       <%= link_to "Circles", web_circles_path, class: "text-dada-text dark:text-white hover:text-dada-primary transition" %>
       <%= link_to "Resources", web_contents_path, class: "text-dada-text dark:text-white hover:text-dada-primary transition" %>
+      <%= link_to "Providers", web_providers_path, class: "text-dada-text dark:text-white hover:text-dada-primary transition" %>
     </nav>
 
     <!-- Right side controls -->
@@ -71,6 +72,7 @@
     <ul class="px-4 py-4 space-y-2 text-base font-medium">
       <li><%= link_to "Circles", web_circles_path, class: "block py-2 text-dada-text dark:text-white hover:text-dada-primary" %></li>
       <li><%= link_to "Resources", web_contents_path, class: "block py-2 text-dada-text dark:text-white hover:text-dada-primary" %></li>
+      <li><%= link_to "Providers", web_providers_path, class: "block py-2 text-dada-text dark:text-white hover:text-dada-primary" %></li>
       <% if user_signed_in? %>
         <li><%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "block py-2 text-red-600 dark:text-red-400 hover:underline" %></li>
       <% else %>
