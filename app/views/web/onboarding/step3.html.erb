@@ -1,18 +1,18 @@
-<section class="min-h-screen flex items-center justify-center bg-dada-background dark:bg-dada-darkBg px-4 py-12">
-  <div class="w-full max-w-md bg-white dark:bg-zinc-800 rounded-lg shadow-lg p-8">
-    <h2 class="text-2xl sm:text-3xl font-bold text-dada-text dark:text-white mb-4 text-center">
+<section class="min-h-screen flex items-center justify-center bg-dada-background-light dark:bg-dada-background-dark px-4 py-12">
+  <div class="w-full max-w-md bg-dada-card-light dark:bg-dada-card-dark rounded-dada shadow-lg p-8">
+    <h2 class="text-2xl sm:text-3xl font-bold text-dada-text-light dark:text-dada-text-dark mb-4 text-center">
       What symptoms are showing up for you?
     </h2>
     <%= form_with url: web_onboarding_step4_path, method: :get, local: true, class: "space-y-4" do %>
       <% %w[Hot flashes Trouble sleeping Mood changes Anxiety Brain fog Irregular periods Vaginal dryness Low libido Weight changes Not sure].each do |symptom| %>
         <label class="block cursor-pointer">
           <%= check_box_tag "symptoms[]", symptom, (session[:symptoms]||[]).include?(symptom), class: "mr-2" %>
-          <span class="text-dada-text dark:text-white"><%= symptom.humanize %></span>
+          <span class="text-dada-text-light dark:text-dada-text-dark"><%= symptom.humanize %></span>
         </label>
       <% end %>
       <div class="flex justify-between mt-6">
         <%= link_to "Skip this step", web_onboarding_step4_path, class: "text-dada-primary hover:underline text-sm dark:text-zinc-300" %>
-        <%= submit_tag "Next", class: "bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-lg transition" %>
+        <%= submit_tag "Next", class: "bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-dada transition" %>
       </div>
     <% end %>
   </div>

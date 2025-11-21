@@ -1,15 +1,15 @@
-<header class="bg-dada-background dark:bg-dada-darkBg border-b shadow-lg sticky top-0 z-50">
+<header class="bg-dada-background-light dark:bg-dada-background-dark border-b shadow-lg sticky top-0 z-50">
   <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
     <!-- Logo -->
     <%= link_to root_path, class: "flex items-center gap-2" do %>
-      <%= image_tag "logo.png", alt: "Dada Logo", class: "h-12 w-auto rounded-lg" %>
+      <%= image_tag "logo.png", alt: "Dada Logo", class: "h-12 w-auto rounded-dada" %>
     <% end %>
 
     <!-- Desktop nav links -->
     <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
-      <%= link_to "Circles", web_circles_path, class: "text-dada-text dark:text-white hover:text-dada-primary transition" %>
-      <%= link_to "Resources", web_contents_path, class: "text-dada-text dark:text-white hover:text-dada-primary transition" %>
-      <%= link_to "Providers", web_providers_path, class: "text-dada-text dark:text-white hover:text-dada-primary transition" %>
+      <%= link_to "Circles", web_circles_path, class: "text-dada-text-light dark:text-dada-text-dark hover:text-dada-primary transition" %>
+      <%= link_to "Resources", web_contents_path, class: "text-dada-text-light dark:text-dada-text-dark hover:text-dada-primary transition" %>
+      <%= link_to "Providers", web_providers_path, class: "text-dada-text-light dark:text-dada-text-dark hover:text-dada-primary transition" %>
     </nav>
 
     <!-- Right side controls -->
@@ -37,22 +37,22 @@
 
       <!-- Admin Link -->
       <% if user_signed_in? && current_user.admin? %>
-        <%= link_to "Admin", admin_root_path, class: "text-sm font-medium text-dada-text dark:text-white hover:text-dada-primary transition" %>
+        <%= link_to "Admin", admin_root_path, class: "text-sm font-medium text-dada-text-light dark:text-dada-text-dark hover:text-dada-primary transition" %>
       <% end %>
 
       <!-- Avatar or Login -->
       <div class="hidden md:block">
         <% if user_signed_in? %>
-          <%= link_to web_profile_path, class: "flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 hover:ring-2 hover:ring-dada-primary transition" do %>
+          <%= link_to web_profile_path, class: "flex items-center justify-center w-10 h-10 rounded-full border border-gray-200 dark:border-zinc-700 bg-dada-card-light dark:bg-dada-card-dark hover:ring-2 hover:ring-dada-primary transition" do %>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                  viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                 class="w-6 h-6 text-dada-text dark:text-white">
+                 class="w-6 h-6 text-dada-text-light dark:text-dada-text-dark">
               <path stroke-linecap="round" stroke-linejoin="round"
                     d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 1115 0" />
             </svg>
           <% end %>
         <% else %>
-          <%= link_to new_user_session_path, class: "text-sm font-medium text-dada-text dark:text-white hover:text-dada-primary transition" do %>
+          <%= link_to new_user_session_path, class: "text-sm font-medium text-dada-text-light dark:text-dada-text-dark hover:text-dada-primary transition" do %>
             Log In
           <% end %>
         <% end %>
@@ -61,7 +61,7 @@
       <!-- Mobile menu toggle button -->
       <div class="md:hidden">
         <input type="checkbox" id="mobile-menu-toggle" class="peer absolute opacity-0 w-0 h-0" />
-        <label for="mobile-menu-toggle" class="cursor-pointer p-2 rounded text-dada-text dark:text-white hover:text-dada-primary">
+        <label for="mobile-menu-toggle" class="cursor-pointer p-2 rounded text-dada-text-light dark:text-dada-text-dark hover:text-dada-primary">
           <span class="sr-only">Toggle main menu</span>
           <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -75,13 +75,13 @@
   <!-- Mobile nav panel -->
   <nav class="peer-checked:block hidden md:hidden bg-white dark:bg-dada-darkBg border-t border-gray-200 dark:border-zinc-700">
     <ul class="px-4 py-4 space-y-2 text-base font-medium">
-      <li><%= link_to "Circles", web_circles_path, class: "block py-2 text-dada-text dark:text-white hover:text-dada-primary" %></li>
-      <li><%= link_to "Resources", web_contents_path, class: "block py-2 text-dada-text dark:text-white hover:text-dada-primary" %></li>
-      <li><%= link_to "Providers", web_providers_path, class: "block py-2 text-dada-text dark:text-white hover:text-dada-primary" %></li>
+      <li><%= link_to "Circles", web_circles_path, class: "block py-2 text-dada-text-light dark:text-dada-text-dark hover:text-dada-primary" %></li>
+      <li><%= link_to "Resources", web_contents_path, class: "block py-2 text-dada-text-light dark:text-dada-text-dark hover:text-dada-primary" %></li>
+      <li><%= link_to "Providers", web_providers_path, class: "block py-2 text-dada-text-light dark:text-dada-text-dark hover:text-dada-primary" %></li>
       <% if user_signed_in? %>
         <li><%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "block py-2 text-red-600 dark:text-red-400 hover:underline" %></li>
       <% else %>
-        <li><%= link_to "Log In", new_user_session_path, class: "block py-2 text-dada-text dark:text-white hover:text-dada-primary" %></li>
+        <li><%= link_to "Log In", new_user_session_path, class: "block py-2 text-dada-text-light dark:text-dada-text-dark hover:text-dada-primary" %></li>
       <% end %>
     </ul>
   </nav>

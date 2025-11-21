@@ -1,12 +1,12 @@
-<div class="min-h-screen bg-dada-background dark:bg-dada-darkBg">
+<div class="min-h-screen bg-dada-background-light dark:bg-dada-background-dark">
   <div class="max-w-4xl mx-auto px-4 py-8">
     <div class="mb-6">
       <%= link_to "← Back to Circles", web_circles_path, class: "text-dada-primary hover:underline text-sm" %>
     </div>
 
-    <div class="bg-white dark:bg-zinc-800 rounded-lg shadow p-6 mb-8">
+    <div class="bg-dada-card-light dark:bg-dada-card-dark rounded-dada shadow p-6 mb-8">
       <div class="flex items-start justify-between mb-3">
-        <h1 class="text-3xl font-bold text-dada-text dark:text-white"><%= @circle.name %></h1>
+        <h1 class="text-3xl font-bold text-dada-text-light dark:text-dada-text-dark"><%= @circle.name %></h1>
         <% if @circle.stage_focus.present? %>
           <span class="text-sm bg-dada-secondary dark:bg-zinc-700 px-3 py-1 rounded">
             <%= @circle.stage_focus %>
@@ -20,25 +20,25 @@
       </div>
     </div>
 
-    <div class="bg-white dark:bg-zinc-800 rounded-lg shadow p-6 mb-6">
-      <h2 class="text-lg font-semibold text-dada-text dark:text-white mb-4">Share Your Thoughts</h2>
+    <div class="bg-dada-card-light dark:bg-dada-card-dark rounded-dada shadow p-6 mb-6">
+      <h2 class="text-lg font-semibold text-dada-text-light dark:text-dada-text-dark mb-4">Share Your Thoughts</h2>
       <%= form_with model: @new_post, url: web_circle_posts_path(@circle), class: "space-y-4" do |f| %>
         <%= f.text_area :content, rows: 4, placeholder: "Share your experience, question, or support (posted anonymously)...",
-            class: "w-full px-4 py-3 border border-gray-300 dark:border-zinc-600 rounded-lg focus:ring-2 focus:ring-dada-primary focus:border-transparent bg-white dark:bg-zinc-700 text-dada-text dark:text-white" %>
-        <%= f.submit "Post Anonymously", class: "bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-2 rounded-lg transition cursor-pointer" %>
+            class: "w-full px-4 py-3 border border-gray-300 dark:border-zinc-600 rounded-dada focus:ring-2 focus:ring-dada-primary focus:border-transparent bg-white dark:bg-zinc-700 text-dada-text-light dark:text-dada-text-dark" %>
+        <%= f.submit "Post Anonymously", class: "bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-2 rounded-dada transition cursor-pointer" %>
       <% end %>
     </div>
 
     <div class="space-y-4">
-      <h2 class="text-xl font-bold text-dada-text dark:text-white mb-4">Recent Posts</h2>
+      <h2 class="text-xl font-bold text-dada-text-light dark:text-dada-text-dark mb-4">Recent Posts</h2>
       <% @posts.each do |post| %>
-        <div class="bg-white dark:bg-zinc-800 rounded-lg shadow p-6">
+        <div class="bg-dada-card-light dark:bg-dada-card-dark rounded-dada shadow p-6">
           <div class="flex items-center mb-3">
             <div class="w-10 h-10 bg-dada-primary rounded-full flex items-center justify-center text-white font-semibold mr-3">
               <%= post.anonymous_handle[0..1].upcase %>
             </div>
             <div>
-              <p class="font-semibold text-dada-text dark:text-white"><%= post.anonymous_handle %></p>
+              <p class="font-semibold text-dada-text-light dark:text-dada-text-dark"><%= post.anonymous_handle %></p>
               <p class="text-xs text-dada-subtle dark:text-zinc-500">
                 <%= time_ago_in_words(post.created_at) %> ago
               </p>
@@ -52,7 +52,7 @@
       <% end %>
 
       <% if @posts.empty? %>
-        <div class="text-center py-12 bg-white dark:bg-zinc-800 rounded-lg">
+        <div class="text-center py-12 bg-dada-card-light dark:bg-dada-card-dark rounded-dada">
           <p class="text-dada-subtle dark:text-zinc-400">No posts yet. Be the first to share!</p>
         </div>
       <% end %>

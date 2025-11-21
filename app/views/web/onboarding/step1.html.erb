@@ -1,13 +1,13 @@
-<section class="min-h-screen flex items-center justify-center bg-dada-background dark:bg-dada-darkBg px-4 py-12">
-  <div class="w-full max-w-md bg-white dark:bg-zinc-800 rounded-lg shadow-lg p-8 text-center">
+<section class="min-h-screen flex items-center justify-center bg-dada-background-light dark:bg-dada-background-dark px-4 py-12">
+  <div class="w-full max-w-md bg-dada-card-light dark:bg-dada-card-dark rounded-dada shadow-lg p-8 text-center">
     <%= image_tag "logo.png", alt: "Dada Logo", class: "h-10 w-auto mx-auto mb-6" %>
-    <h1 class="text-3xl sm:text-4xl font-bold text-dada-text dark:text-white mb-4">
+    <h1 class="text-3xl sm:text-4xl font-bold text-dada-text-light dark:text-dada-text-dark mb-4">
       Welcome to your journey 👋
     </h1>
     <p class="text-dada-subtle dark:text-zinc-400 mb-8">
       Let’s understand your needs better so we can tailor content and connection just for you.
     </p>
     <%= link_to "Start your journey", web_onboarding_step2_path,
-                class: "w-full inline-block bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-lg transition" %>
+                class: "w-full inline-block bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-dada transition" %>
   </div>
 </section>

@@ -35,7 +35,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
     <div class="max-w-3xl mx-auto space-y-6">
       <!-- ✅ NAVBAR -->
-      <header class="bg-dada-background dark:bg-dada-darkBg shadow-lg sticky top-0 z-50">
+      <header class="bg-dada-background-light dark:bg-dada-background-dark shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center">
           <div class="flex items-center gap-2">
             <%= image_tag "logo.png", alt: "Dada Logo", class: "h-8 w-auto sm:h-10" %>
@@ -52,7 +52,7 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-        <div class="bg-white dark:bg-zinc-800 shadow p-4 rounded-lg">
+        <div class="bg-dada-card-light dark:bg-dada-card-dark shadow p-4 rounded-dada">
           <h2 class="text-lg font-semibold">Buttons</h2>
           <div class="mt-2 space-x-2">
             <button class="bg-dada-primary text-white px-4 py-2 rounded text-sm">Primary Button</button>
@@ -60,7 +60,7 @@
           </div>
         </div>
 
-        <div class="bg-white dark:bg-zinc-800 shadow p-4 rounded-lg">
+        <div class="bg-dada-card-light dark:bg-dada-card-dark shadow p-4 rounded-dada">
           <h2 class="text-lg font-semibold">Text Contrast</h2>
           <div class="mt-2 space-y-2 text-sm">
             <p class="text-dada-text">This is primary text on light background</p>
@@ -69,7 +69,7 @@
           </div>
         </div>
 
-        <div class="lg:col-span-2 bg-white dark:bg-zinc-800 shadow p-4 rounded-lg mt-4">
+        <div class="lg:col-span-2 bg-dada-card-light dark:bg-dada-card-dark shadow p-4 rounded-dada mt-4">
           <h2 class="text-lg font-semibold">Contrast Ratio Visual Test</h2>
           <div class="mt-2 space-y-2">
             <div class="p-3 bg-dada-primary text-white rounded text-sm">#E84D4D on White ✅</div>
@@ -79,7 +79,7 @@
         </div>
       </div>
       <!-- ✅ FOOTER -->
-      <footer class="bg-dada-background dark:bg-dada-darkBg text-sm text-dada-subtle dark:text-zinc-400 border-t border-dada-subtle dark:border-zinc-700 mt-auto">
+      <footer class="bg-dada-background-light dark:bg-dada-background-dark text-sm text-dada-subtle dark:text-zinc-400 border-t border-dada-subtle dark:border-zinc-700 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 text-center">
           &copy; <%= Time.current.year %> Dada. All rights reserved.
         </div>

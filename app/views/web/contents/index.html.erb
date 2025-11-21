@@ -1,22 +1,22 @@
-<div class="min-h-screen bg-dada-background dark:bg-dada-darkBg">
+<div class="min-h-screen bg-dada-background-light dark:bg-dada-background-dark">
   <div class="max-w-6xl mx-auto px-4 py-8">
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-dada-text dark:text-white mb-2">Content Library</h1>
+      <h1 class="text-3xl font-bold text-dada-text-light dark:text-dada-text-dark mb-2">Content Library</h1>
       <p class="text-dada-subtle dark:text-zinc-400">
         Culturally relevant guides and resources tailored to your journey
       </p>
     </div>
 
     <div class="flex flex-wrap gap-2 mb-6">
-      <%= link_to "All", web_contents_path, class: "px-4 py-2 rounded-lg #{params[:stage].blank? ? 'bg-dada-primary text-white' : 'bg-white dark:bg-zinc-800 text-dada-text dark:text-white'}" %>
+      <%= link_to "All", web_contents_path, class: "px-4 py-2 rounded-dada #{params[:stage].blank? ? 'bg-dada-primary text-white' : 'bg-dada-card-light dark:bg-dada-card-dark text-dada-text-light dark:text-dada-text-dark'}" %>
       <% Content::STAGES.each do |stage| %>
-        <%= link_to stage, web_contents_path(stage: stage), class: "px-4 py-2 rounded-lg #{params[:stage] == stage ? 'bg-dada-primary text-white' : 'bg-white dark:bg-zinc-800 text-dada-text dark:text-white'}" %>
+        <%= link_to stage, web_contents_path(stage: stage), class: "px-4 py-2 rounded-dada #{params[:stage] == stage ? 'bg-dada-primary text-white' : 'bg-dada-card-light dark:bg-dada-card-dark text-dada-text-light dark:text-dada-text-dark'}" %>
       <% end %>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <% @contents.each do |content| %>
-        <%= link_to web_content_path(content), class: "block bg-white dark:bg-zinc-800 rounded-lg shadow hover:shadow-lg transition overflow-hidden" do %>
+        <%= link_to web_content_path(content), class: "block bg-dada-card-light dark:bg-dada-card-dark rounded-dada shadow hover:shadow-lg transition overflow-hidden" do %>
           <div class="p-6">
             <div class="flex items-center justify-between mb-3">
               <span class="text-xs bg-dada-secondary dark:bg-zinc-700 px-2 py-1 rounded">
@@ -26,7 +26,7 @@
                 <%= content.view_count %> views
               </span>
             </div>
-            <h2 class="text-xl font-bold text-dada-text dark:text-white mb-3">
+            <h2 class="text-xl font-bold text-dada-text-light dark:text-dada-text-dark mb-3">
               <%= content.title %>
             </h2>
             <p class="text-dada-subtle dark:text-zinc-400 mb-4">

@@ -1,14 +1,14 @@
-<div class="min-h-screen bg-dada-background dark:bg-dada-darkBg p-4">
+<div class="min-h-screen bg-dada-background-light dark:bg-dada-background-dark p-4">
   <div class="max-w-4xl mx-auto">
-    <div class="bg-white dark:bg-zinc-800 shadow-md rounded-lg p-6 mb-8">
-      <h2 class="text-2xl font-bold text-dada-text dark:text-white mb-4">My Shares</h2>
+    <div class="bg-dada-card-light dark:bg-dada-card-dark shadow-md rounded-dada p-6 mb-8">
+      <h2 class="text-2xl font-bold text-dada-text-light dark:text-dada-text-dark mb-4">My Shares</h2>
 
       <%= link_to "New Share", new_web_share_path,
                   class: "mb-4 inline-block bg-dada-primary hover:bg-dada-accent text-white font-semibold px-4 py-2 rounded" %>
 
       <div class="space-y-6">
         <% @shares.each do |share| %>
-          <div class="bg-white dark:bg-zinc-700 shadow rounded-lg p-4">
+          <div class="bg-white dark:bg-zinc-700 shadow rounded-dada p-4">
             <div class="flex justify-between items-center mb-2">
               <span class="text-sm text-dada-subtle dark:text-zinc-400">
                 <%= share.created_at.strftime("%b %d, %Y") %>
@@ -25,7 +25,7 @@
             </div>
 
             <!-- ✅ FIXED: use share.share_type instead of share.type -->
-            <h3 class="text-lg font-semibold text-dada-text dark:text-white">
+            <h3 class="text-lg font-semibold text-dada-text-light dark:text-dada-text-dark">
               <%= share.title.presence || share.share_type.capitalize %>
             </h3>
 

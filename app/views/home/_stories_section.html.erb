@@ -9,7 +9,7 @@
       <p class="text-sm uppercase text-dada-primary font-semibold tracking-wide">
         Sister Stories
       </p>
-      <h2 class="text-3xl sm:text-4xl font-bold text-dada-text dark:text-white">
+      <h2 class="text-3xl sm:text-4xl font-bold text-dada-text-light dark:text-dada-text-dark">
         <%= raw(stories_data["section_title"] || "Real Women, Real <span class='text-dada-primary'>Journeys</span>") %>
       </h2>
       <p class="mt-2 text-dada-subtle dark:text-zinc-400 max-w-2xl mx-auto text-sm sm:text-base">
@@ -20,11 +20,11 @@
     <!-- Story Cards Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
       <% stories.each do |story| %>
-        <div class="bg-white dark:bg-zinc-800 shadow-md hover:shadow-lg transition rounded-xl p-6 flex flex-col justify-between space-y-4">
+        <div class="bg-dada-card-light dark:bg-dada-card-dark shadow-md hover:shadow-lg transition rounded-dada p-6 flex flex-col justify-between space-y-4">
           <div class="flex items-center space-x-3">
             <span class="text-3xl"><%= story["emoji"] %></span>
             <div>
-              <h3 class="text-lg font-semibold text-dada-text dark:text-white"><%= story["name"] %></h3>
+              <h3 class="text-lg font-semibold text-dada-text-light dark:text-dada-text-dark"><%= story["name"] %></h3>
               <p class="text-sm text-dada-subtle dark:text-zinc-400"><%= story["location"] %></p>
             </div>
           </div>
@@ -57,7 +57,7 @@
               bg-dada-primary text-white
               hover:bg-dada-accent
               dark:bg-dada-accent dark:hover:bg-dada-primary dark:text-dada-background
-              font-semibold px-6 py-3 rounded-lg
+              font-semibold px-6 py-3 rounded-dada
               transition-colors duration-200 shadow-sm" %>
       <% else %>
         <%= link_to "Log in to Share Your Story",
@@ -65,7 +65,7 @@
                     class: "inline-block
               border border-dada-primary text-dada-text
               text-dada-primary hover:bg-dada-primary hover:text-white
-              font-semibold px-6 py-3 rounded-lg
+              font-semibold px-6 py-3 rounded-dada
               transition-colors duration-200 shadow-sm" %>
       <% end %>
     </div>

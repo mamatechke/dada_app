@@ -1,6 +1,6 @@
-<div class="min-h-screen bg-dada-background dark:bg-dada-darkBg p-6">
-  <div class="max-w-2xl mx-auto bg-white dark:bg-zinc-800 shadow-lg rounded-lg p-6 space-y-6">
-    <h2 class="text-2xl font-bold text-dada-text dark:text-white mb-2">
+<div class="min-h-screen bg-dada-background-light dark:bg-dada-background-dark p-6">
+  <div class="max-w-2xl mx-auto bg-dada-card-light dark:bg-dada-card-dark shadow-lg rounded-dada p-6 space-y-6">
+    <h2 class="text-2xl font-bold text-dada-text-light dark:text-dada-text-dark mb-2">
       <%= @share.persisted? ? "Edit Your Share" : "Create a New Share" %>
     </h2>
 
@@ -13,47 +13,47 @@
       <!-- Share Type -->
       <div class="mb-4">
         <%= f.label :share_type, "What would you like to share?",
-                    class: "block text-sm font-semibold text-dada-text dark:text-white mb-1" %>
+                    class: "block text-sm font-semibold text-dada-text-light dark:text-dada-text-dark mb-1" %>
         <%= f.select :share_type, Share::TYPES, { selected: @share.share_type },
                      class: "block w-full mt-1 border border-gray-300 dark:border-zinc-600
-                  bg-white dark:bg-zinc-700 text-dada-text dark:text-white rounded px-3 py-2" %>
+                  bg-white dark:bg-zinc-700 text-dada-text-light dark:text-dada-text-dark rounded px-3 py-2" %>
       </div>
 
       <!-- Title -->
       <div class="mb-4">
-        <%= f.label :title, class: "block text-sm font-medium text-dada-text dark:text-white" %>
+        <%= f.label :title, class: "block text-sm font-medium text-dada-text-light dark:text-dada-text-dark" %>
         <%= f.text_field :title,
                          class: "w-full mt-1 px-3 py-2 rounded border border-gray-300 dark:border-zinc-600
-                  bg-white dark:bg-zinc-700 text-dada-text dark:text-white" %>
+                  bg-white dark:bg-zinc-700 text-dada-text-light dark:text-dada-text-dark" %>
       </div>
 
       <!-- Content -->
       <div class="mb-4">
-        <%= f.label :content, class: "block text-sm font-medium text-dada-text dark:text-white" %>
+        <%= f.label :content, class: "block text-sm font-medium text-dada-text-light dark:text-dada-text-dark" %>
         <%= f.text_area :content, rows: 4,
                         class: "w-full mt-1 px-3 py-2 rounded border border-gray-300 dark:border-zinc-600
-                  bg-white dark:bg-zinc-700 text-dada-text dark:text-white" %>
+                  bg-white dark:bg-zinc-700 text-dada-text-light dark:text-dada-text-dark" %>
       </div>
 
       <!-- Image URLs -->
       <div class="mb-4">
         <%= f.label :image_urls, "Image URLs (comma separated)",
-                    class: "block text-sm font-medium text-dada-text dark:text-white" %>
+                    class: "block text-sm font-medium text-dada-text-light dark:text-dada-text-dark" %>
         <%= f.text_field :image_urls,
                          class: "w-full mt-1 px-3 py-2 rounded border border-gray-300 dark:border-zinc-600
-                  bg-white dark:bg-zinc-700 text-dada-text dark:text-white" %>
+                  bg-white dark:bg-zinc-700 text-dada-text-light dark:text-dada-text-dark" %>
       </div>
 
       <!-- Video URL with Live Preview -->
       <div class="mb-6">
         <%= f.label :video_url, "Video URL (YouTube link)",
-                    class: "block text-sm font-medium text-dada-text dark:text-white" %>
+                    class: "block text-sm font-medium text-dada-text-light dark:text-dada-text-dark" %>
         <%= f.text_field :video_url,
                          id: "video_url_field",
                          placeholder: "https://www.youtube.com/watch?v=abc123",
                          value: @share.video_url,
                          class: "w-full mt-1 px-3 py-2 rounded border border-gray-300 dark:border-zinc-600
-                  bg-white dark:bg-zinc-700 text-dada-text dark:text-white" %>
+                  bg-white dark:bg-zinc-700 text-dada-text-light dark:text-dada-text-dark" %>
 
         <div id="video-preview" class="mt-3 hidden">
           <div class="aspect-w-16 aspect-h-9">
@@ -69,12 +69,12 @@
 
       <!-- Visibility -->
       <div class="mb-4">
-        <%= f.label :visibility, class: "block text-sm font-medium text-dada-text dark:text-white" %>
+        <%= f.label :visibility, class: "block text-sm font-medium text-dada-text-light dark:text-dada-text-dark" %>
         <%= f.select :visibility,
                      Share.visibilities.keys.map { |v| [v.titleize, v] },
                      { selected: @share.visibility },
                      class: "block w-full mt-1 border border-gray-300 dark:border-zinc-600
-                  bg-white dark:bg-zinc-700 text-dada-text dark:text-white rounded px-3 py-2" %>
+                  bg-white dark:bg-zinc-700 text-dada-text-light dark:text-dada-text-dark rounded px-3 py-2" %>
       </div>
 
       <!-- Submit -->

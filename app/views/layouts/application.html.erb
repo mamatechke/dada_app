@@ -13,12 +13,17 @@
   <meta name="description" content="Your culturally-rooted menopause companion" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="theme-color" content="#C85A54" />
+  <meta name="theme-color" content="#E94F4F" />
 
   <!-- PWA Manifest -->
   <link rel="manifest" href="/manifest.json" />
   <link rel="icon" type="image/png" href="/icon.png" />
   <link rel="apple-touch-icon" href="/icon.png" />
+
+  <!-- Google Fonts - Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Use prebuilt Tailwind CSS from app/assets/builds instead of the CDN in production -->
   <%= stylesheet_link_tag "tailwind", data: { turbo_track: "reload" } %>
@@ -38,7 +43,7 @@
   </script>
 </head>
 
-<body class="bg-dada-background text-dada-text dark:bg-dada-darkBg dark:text-dada-background transition-colors duration-300 min-h-screen flex flex-col">
+<body class="bg-dada-background-light text-dada-text-light dark:bg-dada-background-dark dark:text-dada-text-dark transition-colors duration-300 min-h-screen flex flex-col">
 <%= render "shared/navbar" %>
 <!-- ✅ MAIN CONTENT -->
 <main class="flex-1">

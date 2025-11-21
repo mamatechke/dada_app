@@ -7,36 +7,36 @@
       <p class="mt-1 text-sm text-gray-500">Manage articles, guides, and resources</p>
     </div>
     <div class="mt-3 sm:mt-0">
-      <%= link_to "Create New Content", new_admin_content_path, class: "inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-dada-primary hover:bg-dada-accent" %>
+      <%= link_to "Create New Content", new_admin_content_path, class: "inline-flex items-center px-4 py-2 border border-transparent rounded-dada shadow-sm text-sm font-medium text-white bg-dada-primary hover:bg-dada-accent" %>
     </div>
   </div>
 
   <!-- Filters -->
-  <div class="bg-white shadow rounded-lg p-4 mb-6">
+  <div class="bg-white shadow rounded-dada p-4 mb-6">
     <%= form_with url: admin_contents_path, method: :get, class: "grid grid-cols-1 gap-4 sm:grid-cols-4" do |f| %>
       <div>
         <%= f.label :search, "Search", class: "block text-sm font-medium text-gray-700 mb-1" %>
-        <%= f.text_field :search, value: params[:search], placeholder: "Search by title...", class: "w-full rounded-md border-gray-300 shadow-sm focus:border-dada-primary focus:ring-dada-primary sm:text-sm" %>
+        <%= f.text_field :search, value: params[:search], placeholder: "Search by title...", class: "w-full rounded-dada border-gray-300 shadow-sm focus:border-dada-primary focus:ring-dada-primary sm:text-sm" %>
       </div>
 
       <div>
         <%= f.label :status, "Status", class: "block text-sm font-medium text-gray-700 mb-1" %>
-        <%= f.select :status, [["All", ""], ["Published", "published"], ["Draft", "draft"]], { selected: params[:status] }, class: "w-full rounded-md border-gray-300 shadow-sm focus:border-dada-primary focus:ring-dada-primary sm:text-sm" %>
+        <%= f.select :status, [["All", ""], ["Published", "published"], ["Draft", "draft"]], { selected: params[:status] }, class: "w-full rounded-dada border-gray-300 shadow-sm focus:border-dada-primary focus:ring-dada-primary sm:text-sm" %>
       </div>
 
       <div>
         <%= f.label :content_type, "Type", class: "block text-sm font-medium text-gray-700 mb-1" %>
-        <%= f.select :content_type, [["All", ""], ["Article", "article"], ["Guide", "guide"], ["Video", "video"], ["Tip", "tip"]], { selected: params[:content_type] }, class: "w-full rounded-md border-gray-300 shadow-sm focus:border-dada-primary focus:ring-dada-primary sm:text-sm" %>
+        <%= f.select :content_type, [["All", ""], ["Article", "article"], ["Guide", "guide"], ["Video", "video"], ["Tip", "tip"]], { selected: params[:content_type] }, class: "w-full rounded-dada border-gray-300 shadow-sm focus:border-dada-primary focus:ring-dada-primary sm:text-sm" %>
       </div>
 
       <div class="flex items-end">
-        <%= f.submit "Filter", class: "w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200" %>
+        <%= f.submit "Filter", class: "w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-dada text-sm font-medium text-gray-700 hover:bg-gray-200" %>
       </div>
     <% end %>
   </div>
 
   <!-- Content Table -->
-  <div class="bg-white shadow rounded-lg overflow-hidden">
+  <div class="bg-white shadow rounded-dada overflow-hidden">
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="bg-gray-50">
         <tr>

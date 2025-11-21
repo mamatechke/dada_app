@@ -2,7 +2,7 @@
 <% demo_messages = chatbot_data["demo_messages"] || [] %>
 <% suggested_prompts = chatbot_data["suggested_prompts"] || [] %>
 
-<section class="py-12 bg-dada-background dark:bg-dada-darkBg">
+<section class="py-12 bg-dada-background-light dark:bg-dada-background-dark">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <!-- Header -->
@@ -10,7 +10,7 @@
       <p class="text-sm uppercase text-dada-subtle dark:text-zinc-400 font-semibold">
         Gentle Guidance from Dada
       </p>
-      <h2 class="text-2xl sm:text-3xl font-bold text-dada-text dark:text-white">
+      <h2 class="text-2xl sm:text-3xl font-bold text-dada-text-light dark:text-dada-text-dark">
         <%= chatbot_data["section_title"] || "You're Not Alone on This Journey" %>
       </h2>
       <p class="mt-2 text-dada-subtle dark:text-zinc-400">
@@ -19,22 +19,22 @@
     </div>
 
     <!-- Chat Container -->
-    <div class="bg-white dark:bg-zinc-800 shadow-md rounded-lg p-6 flex flex-col h-[500px] sm:h-[600px] overflow-hidden">
+    <div class="bg-dada-card-light dark:bg-dada-card-dark shadow-md rounded-dada p-6 flex flex-col h-[500px] sm:h-[600px] overflow-hidden">
 
       <!-- Chat History -->
-      <div class="flex-1 overflow-y-auto space-y-4 pr-2 bg-gray-50 dark:bg-zinc-900 rounded-md px-4 py-3">
+      <div class="flex-1 overflow-y-auto space-y-4 pr-2 bg-gray-50 dark:bg-zinc-900 rounded-dada px-4 py-3">
         <% demo_messages.each do |message| %>
           <% if message["sender"] == "user" %>
             <!-- User Message -->
             <div class="flex justify-end">
-              <div class="bg-dada-primary text-white px-4 py-2 rounded-lg max-w-xs sm:max-w-md text-sm shadow">
+              <div class="bg-dada-primary text-white px-4 py-2 rounded-dada max-w-xs sm:max-w-md text-sm shadow">
                 <%= message["text"] %>
               </div>
             </div>
           <% else %>
             <!-- Dada Response -->
             <div class="flex justify-start">
-              <div class="bg-gray-100 dark:bg-zinc-700 text-dada-text dark:text-white px-4 py-2 rounded-lg max-w-xs sm:max-w-md text-sm shadow">
+              <div class="bg-gray-100 dark:bg-zinc-700 text-dada-text-light dark:text-dada-text-dark px-4 py-2 rounded-dada max-w-xs sm:max-w-md text-sm shadow">
                 <%= message["text"] %>
               </div>
             </div>
@@ -59,11 +59,11 @@
           <input
             type="text"
             placeholder="Ask Dada..."
-            class="flex-1 border border-gray-300 dark:border-zinc-700 rounded px-3 py-2 text-sm bg-white dark:bg-zinc-900 text-dada-text dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-dada-primary"
+            class="flex-1 border border-gray-300 dark:border-zinc-700 rounded px-3 py-2 text-sm bg-white dark:bg-zinc-900 text-dada-text-light dark:text-dada-text-dark placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-dada-primary"
             />
           <button
             type="submit"
-            class="bg-dada-primary hover:bg-dada-accent text-white px-4 py-2 rounded-lg transition text-sm"
+            class="bg-dada-primary hover:bg-dada-accent text-white px-4 py-2 rounded-dada transition text-sm"
           >
             Send
           </button>

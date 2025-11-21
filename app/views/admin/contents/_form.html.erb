@@ -1,6 +1,6 @@
 <%= form_with(model: [:admin, content], class: "space-y-6") do |f| %>
   <% if content.errors.any? %>
-    <div class="rounded-md bg-red-50 p-4">
+    <div class="rounded-dada bg-red-50 p-4">
       <div class="flex">
         <div class="ml-3">
           <h3 class="text-sm font-medium text-red-800">
@@ -18,7 +18,7 @@
     </div>
   <% end %>
 
-  <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+  <div class="bg-white shadow px-4 py-5 sm:rounded-dada sm:p-6">
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <h3 class="text-lg font-medium leading-6 text-gray-900">Content Information</h3>
@@ -27,29 +27,29 @@
       <div class="mt-5 md:mt-0 md:col-span-2 space-y-6">
         <div>
           <%= f.label :title, class: "block text-sm font-medium text-gray-700" %>
-          <%= f.text_field :title, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm", placeholder: "Enter content title" %>
+          <%= f.text_field :title, class: "mt-1 block w-full border border-gray-300 rounded-dada shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm", placeholder: "Enter content title" %>
         </div>
 
         <div>
           <%= f.label :content_type, "Type", class: "block text-sm font-medium text-gray-700" %>
-          <%= f.select :content_type, Content::CONTENT_TYPES.map { |t| [t.capitalize, t] }, { prompt: "Select type" }, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm" %>
+          <%= f.select :content_type, Content::CONTENT_TYPES.map { |t| [t.capitalize, t] }, { prompt: "Select type" }, class: "mt-1 block w-full border border-gray-300 rounded-dada shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm" %>
         </div>
 
         <div>
           <%= f.label :locale, "Language", class: "block text-sm font-medium text-gray-700" %>
-          <%= f.select :locale, [["English", "en"], ["French", "fr"], ["Swahili", "sw"]], { selected: content.locale || "en" }, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm" %>
+          <%= f.select :locale, [["English", "en"], ["French", "fr"], ["Swahili", "sw"]], { selected: content.locale || "en" }, class: "mt-1 block w-full border border-gray-300 rounded-dada shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm" %>
         </div>
 
         <div>
           <%= f.label :body, "Content", class: "block text-sm font-medium text-gray-700" %>
-          <%= f.text_area :body, rows: 12, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm", placeholder: "Write your content here..." %>
+          <%= f.text_area :body, rows: 12, class: "mt-1 block w-full border border-gray-300 rounded-dada shadow-sm py-2 px-3 focus:outline-none focus:ring-dada-primary focus:border-dada-primary sm:text-sm", placeholder: "Write your content here..." %>
           <p class="mt-2 text-sm text-gray-500">You can use markdown formatting.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+  <div class="bg-white shadow px-4 py-5 sm:rounded-dada sm:p-6">
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <h3 class="text-lg font-medium leading-6 text-gray-900">Targeting</h3>
@@ -83,7 +83,7 @@
     </div>
   </div>
 
-  <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+  <div class="bg-white shadow px-4 py-5 sm:rounded-dada sm:p-6">
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <h3 class="text-lg font-medium leading-6 text-gray-900">Publishing</h3>
@@ -124,7 +124,7 @@
   </div>
 
   <div class="flex justify-end space-x-3">
-    <%= link_to "Cancel", admin_contents_path, class: "bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dada-primary" %>
-    <%= f.submit content.new_record? ? "Create Content" : "Update Content", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-dada-primary hover:bg-dada-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dada-primary" %>
+    <%= link_to "Cancel", admin_contents_path, class: "bg-white py-2 px-4 border border-gray-300 rounded-dada shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dada-primary" %>
+    <%= f.submit content.new_record? ? "Create Content" : "Update Content", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-dada text-white bg-dada-primary hover:bg-dada-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dada-primary" %>
   </div>
 <% end %>

@@ -22,12 +22,12 @@
             </div>
             <div class="hidden md:block">
               <div class="ml-10 flex items-baseline space-x-4">
-                <%= link_to "Dashboard", admin_root_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-md text-sm font-medium #{current_page?(admin_root_path) ? 'bg-dada-accent' : ''}" %>
-                <%= link_to "Content", admin_contents_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-md text-sm font-medium" %>
-                <%= link_to "Landing Page", admin_page_sections_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-md text-sm font-medium" %>
-                <%= link_to "Providers", admin_providers_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-md text-sm font-medium" %>
-                <%= link_to "Nudges", admin_nudges_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-md text-sm font-medium" %>
-                <%= link_to "Users", admin_users_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-md text-sm font-medium" %>
+                <%= link_to "Dashboard", admin_root_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-dada text-sm font-medium #{current_page?(admin_root_path) ? 'bg-dada-accent' : ''}" %>
+                <%= link_to "Content", admin_contents_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-dada text-sm font-medium" %>
+                <%= link_to "Landing Page", admin_page_sections_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-dada text-sm font-medium" %>
+                <%= link_to "Providers", admin_providers_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-dada text-sm font-medium" %>
+                <%= link_to "Nudges", admin_nudges_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-dada text-sm font-medium" %>
+                <%= link_to "Users", admin_users_path, class: "text-white hover:bg-dada-accent px-3 py-2 rounded-dada text-sm font-medium" %>
               </div>
             </div>
           </div>
@@ -44,12 +44,12 @@
     <header class="bg-white shadow">
       <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <% if flash[:notice] %>
-          <div class="mb-4 rounded-md bg-green-50 p-4">
+          <div class="mb-4 rounded-dada bg-green-50 p-4">
             <p class="text-sm text-green-800"><%= flash[:notice] %></p>
           </div>
         <% end %>
         <% if flash[:alert] %>
-          <div class="mb-4 rounded-md bg-red-50 p-4">
+          <div class="mb-4 rounded-dada bg-red-50 p-4">
             <p class="text-sm text-red-800"><%= flash[:alert] %></p>
           </div>
         <% end %>

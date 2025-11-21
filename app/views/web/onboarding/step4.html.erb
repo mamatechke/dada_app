@@ -1,11 +1,11 @@
-<section class="min-h-screen flex items-center justify-center bg-dada-background dark:bg-dada-darkBg px-4 py-12">
-  <div class="w-full max-w-md bg-white dark:bg-zinc-800 rounded-lg shadow-lg p-8">
-    <h2 class="text-2xl sm:text-3xl font-bold text-dada-text dark:text-white mb-4 text-center">
+<section class="min-h-screen flex items-center justify-center bg-dada-background-light dark:bg-dada-background-dark px-4 py-12">
+  <div class="w-full max-w-md bg-dada-card-light dark:bg-dada-card-dark rounded-dada shadow-lg p-8">
+    <h2 class="text-2xl sm:text-3xl font-bold text-dada-text-light dark:text-dada-text-dark mb-4 text-center">
       Select your location
     </h2>
     <%= form_with url: web_onboarding_step5_path, method: :get, local: true, class: "space-y-4" do %>
       <label class="block">
-        <span class="text-lg font-medium text-dada-text dark:text-white">Country</span>
+        <span class="text-lg font-medium text-dada-text-light dark:text-dada-text-dark">Country</span>
         <%= select_tag :country,
                        options_for_select(
                          [ "Algeria", "Angola", "Benin", "Botswana", "Burkina Faso", "Burundi",
@@ -20,11 +20,11 @@
                            "Uganda", "Zambia", "Zimbabwe", "Other" ],
                          selected: session[:country]
                        ),
-                       class: "mt-2 block w-full border border-gray-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 rounded px-3 py-2 text-dada-text dark:text-white focus:outline-none focus:ring-2 focus:ring-dada-primary"
+                       class: "mt-2 block w-full border border-gray-300 dark:border-zinc-600 bg-dada-card-light dark:bg-dada-card-dark rounded px-3 py-2 text-dada-text-light dark:text-dada-text-dark focus:outline-none focus:ring-2 focus:ring-dada-primary"
         %>
       </label>
       <div class="mt-6">
-        <%= submit_tag "Next", class: "w-full bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-lg transition" %>
+        <%= submit_tag "Next", class: "w-full bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-dada transition" %>
       </div>
     <% end %>
   </div>

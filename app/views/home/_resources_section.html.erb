@@ -9,7 +9,7 @@
       <p class="text-sm uppercase text-dada-primary font-semibold tracking-wide">
         Resource Library
       </p>
-      <h2 class="text-2xl sm:text-3xl font-bold text-dada-text dark:text-white">
+      <h2 class="text-2xl sm:text-3xl font-bold text-dada-text-light dark:text-dada-text-dark">
         <%= raw(resources_data["section_title"] || "Culturally‑Relevant <span class='text-dada-primary'>Resources</span>") %>
       </h2>
       <p class="mt-2 text-dada-subtle dark:text-zinc-400 max-w-2xl mx-auto text-sm sm:text-base">
@@ -20,9 +20,9 @@
     <!-- Resource Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <% resources.each do |resource| %>
-        <div class="bg-white/95 dark:bg-zinc-800/90 border border-dada-secondary/30 dark:border-zinc-700 shadow-lg hover:shadow-xl transition rounded-xl p-6 space-y-4">
+        <div class="bg-white/95 dark:bg-zinc-800/90 border border-dada-secondary/30 dark:border-zinc-700 shadow-lg hover:shadow-xl transition rounded-dada p-6 space-y-4">
           <div>
-            <h3 class="text-lg font-semibold text-dada-text dark:text-white">
+            <h3 class="text-lg font-semibold text-dada-text-light dark:text-dada-text-dark">
               <%= resource["title"] %>
             </h3>
             <p class="text-sm text-dada-subtle dark:text-zinc-400 font-medium">
@@ -44,7 +44,7 @@
 
           <%= link_to "Access Resource",
                       "#",
-                      class: "inline-block bg-dada-primary hover:bg-dada-accent text-white text-sm font-semibold px-5 py-2 rounded-lg transition mt-2" %>
+                      class: "inline-block bg-dada-primary hover:bg-dada-accent text-white text-sm font-semibold px-5 py-2 rounded-dada transition mt-2" %>
         </div>
       <% end %>
     </div>

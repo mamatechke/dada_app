@@ -1,7 +1,7 @@
-<div class="min-h-screen bg-dada-background dark:bg-dada-darkBg">
+<div class="min-h-screen bg-dada-background-light dark:bg-dada-background-dark">
   <div class="max-w-5xl mx-auto px-4 py-8">
     <div class="mb-8">
-      <h1 class="text-3xl font-bold text-dada-text dark:text-white mb-2">Community Circles</h1>
+      <h1 class="text-3xl font-bold text-dada-text-light dark:text-dada-text-dark mb-2">Community Circles</h1>
       <p class="text-dada-subtle dark:text-zinc-400">
         Safe, anonymous spaces to connect with others on similar journeys
       </p>
@@ -9,9 +9,9 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <% @circles.each do |circle| %>
-        <%= link_to web_circle_path(circle), class: "block bg-white dark:bg-zinc-800 rounded-lg shadow hover:shadow-lg transition p-6" do %>
+        <%= link_to web_circle_path(circle), class: "block bg-dada-card-light dark:bg-dada-card-dark rounded-dada shadow hover:shadow-lg transition p-6" do %>
           <div class="flex items-start justify-between mb-3">
-            <h2 class="text-xl font-bold text-dada-text dark:text-white"><%= circle.name %></h2>
+            <h2 class="text-xl font-bold text-dada-text-light dark:text-dada-text-dark"><%= circle.name %></h2>
             <% if circle.stage_focus.present? %>
               <span class="text-xs bg-dada-secondary dark:bg-zinc-700 px-2 py-1 rounded">
                 <%= circle.stage_focus %>

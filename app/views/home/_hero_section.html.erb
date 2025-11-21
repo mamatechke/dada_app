@@ -5,7 +5,7 @@
       <%= hero_data["badge_text"] || "Culturally-Aware Menopause Support" %>
     </p>
 
-    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-dada-text dark:text-white mb-4">
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-dada-text-light dark:text-dada-text-dark mb-4">
       <%= raw(hero_data["headline"] || "Your Journey Through <span class='text-dada-primary'>Midlife</span> Deserves Support") %>
     </h1>
 
@@ -16,16 +16,16 @@
     <div class="flex flex-col sm:flex-row justify-center gap-4 mb-6">
       <% if user_signed_in? %>
         <%= link_to "Go to Dashboard", dashboard_path,
-                    class: "inline-block bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-lg transition" %>
+                    class: "inline-block bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-dada transition" %>
 
         <%= link_to "Explore Circles", web_circles_path,
-                    class: "inline-block border border-dada-primary text-dada-primary hover:bg-dada-primary hover:text-white font-semibold px-6 py-3 rounded-lg transition" %>
+                    class: "inline-block border border-dada-primary text-dada-primary hover:bg-dada-primary hover:text-white font-semibold px-6 py-3 rounded-dada transition" %>
       <% else %>
         <%= link_to "Start Your Journey", web_onboarding_step1_path,
-                    class: "inline-block bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-lg transition" %>
+                    class: "inline-block bg-dada-primary hover:bg-dada-accent text-white font-semibold px-6 py-3 rounded-dada transition" %>
 
         <%= link_to "Explore Resources", web_contents_path,
-                    class: "inline-block border border-dada-primary text-dada-primary dark:text-white dark:border-white hover:bg-dada-primary hover:text-white dark:hover:bg-white dark:hover:text-dada-text font-semibold px-6 py-3 rounded-lg transition" %>
+                    class: "inline-block border border-dada-primary text-dada-primary dark:text-white dark:border-white hover:bg-dada-primary hover:text-white dark:hover:bg-white dark:hover:text-dada-text font-semibold px-6 py-3 rounded-dada transition" %>
       <% end %>
     </div>
 

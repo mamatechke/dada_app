@@ -14,16 +14,43 @@ export default {
     ],
     theme: {
         extend: {
+            fontFamily: {
+                sans: ['Poppins', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'sans-serif'],
+            },
             colors: {
                 dada: {
-                    primary: '#E84D4D',
-                    secondary: '#FFB6A9',
+                    // Primary color from logo heart
+                    primary: '#E94F4F',
+                    primaryDark: '#FF6F6F', // Brighter variant for dark mode
+
+                    // Secondary color from logo text "Dada"
+                    secondary: '#6D2B3E',
+
+                    // Accent colors
                     accent: '#D64040',
-                    text: '#5E2A35',
-                    subtle: '#8B6D76',
-                    background: '#FFEDE6',
-                    darkBg: '#1a1a1a',
+
+                    // Text colors
+                    text: {
+                        light: '#2E2E2E',
+                        dark: '#FAFAFA',
+                        secondary: '#888888',
+                    },
+
+                    // Background colors
+                    background: {
+                        light: '#FFEFEF',
+                        dark: '#1A1A1A',
+                    },
+
+                    // Card backgrounds
+                    card: {
+                        light: '#FFFFFF',
+                        dark: '#2B2B2B',
+                    },
                 },
+            },
+            borderRadius: {
+                'dada': '12px', // Standard brand border radius
             },
         },
     },

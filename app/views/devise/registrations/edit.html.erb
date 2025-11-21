@@ -1,13 +1,13 @@
-<div class="min-h-screen flex items-center justify-center bg-dada-background dark:bg-dada-darkBg p-4">
-  <div class="bg-white dark:bg-zinc-800 shadow-lg rounded-lg p-8 w-full max-w-md">
-    <h2 class="text-2xl font-bold text-dada-text dark:text-white mb-6 text-center">Edit Account</h2>
+<div class="min-h-screen flex items-center justify-center bg-dada-background-light dark:bg-dada-background-dark p-4">
+  <div class="bg-dada-card-light dark:bg-dada-card-dark shadow-lg rounded-dada p-8 w-full max-w-md">
+    <h2 class="text-2xl font-bold text-dada-text-light dark:text-dada-text-dark mb-6 text-center">Edit Account</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="mb-4">
-        <%= f.label :email, class: "block text-sm font-medium text-dada-text dark:text-white" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full px-3 py-2 bg-white dark:bg-zinc-700 text-dada-text dark:text-white border border-gray-300 dark:border-zinc-600 rounded" %>
+        <%= f.label :email, class: "block text-sm font-medium text-dada-text-light dark:text-dada-text-dark" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full px-3 py-2 bg-white dark:bg-zinc-700 text-dada-text-light dark:text-dada-text-dark border border-gray-300 dark:border-zinc-600 rounded" %>
       </div>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -17,8 +17,8 @@
       <% end %>
 
       <div class="mb-4">
-        <%= f.label :password, class: "block text-sm font-medium text-dada-text dark:text-white" %>
-        <%= f.password_field :password, autocomplete: "new-password", placeholder: "Leave blank to keep current password", class: "mt-1 block w-full px-3 py-2 bg-white dark:bg-zinc-700 text-dada-text dark:text-white border border-gray-300 dark:border-zinc-600 rounded" %>
+        <%= f.label :password, class: "block text-sm font-medium text-dada-text-light dark:text-dada-text-dark" %>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "Leave blank to keep current password", class: "mt-1 block w-full px-3 py-2 bg-white dark:bg-zinc-700 text-dada-text-light dark:text-dada-text-dark border border-gray-300 dark:border-zinc-600 rounded" %>
         <% if @minimum_password_length %>
           <p class="text-xs text-dada-subtle dark:text-zinc-400 mt-1">
             <%= @minimum_password_length %> characters minimum
@@ -27,13 +27,13 @@
       </div>
 
       <div class="mb-4">
-        <%= f.label :password_confirmation, class: "block text-sm font-medium text-dada-text dark:text-white" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 block w-full px-3 py-2 bg-white dark:bg-zinc-700 text-dada-text dark:text-white border border-gray-300 dark:border-zinc-600 rounded" %>
+        <%= f.label :password_confirmation, class: "block text-sm font-medium text-dada-text-light dark:text-dada-text-dark" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 block w-full px-3 py-2 bg-white dark:bg-zinc-700 text-dada-text-light dark:text-dada-text-dark border border-gray-300 dark:border-zinc-600 rounded" %>
       </div>
 
       <div class="mb-6">
-        <%= f.label :current_password, class: "block text-sm font-medium text-dada-text dark:text-white" %>
-        <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "We need your current password to save changes", class: "mt-1 block w-full px-3 py-2 bg-white dark:bg-zinc-700 text-dada-text dark:text-white border border-gray-300 dark:border-zinc-600 rounded" %>
+        <%= f.label :current_password, class: "block text-sm font-medium text-dada-text-light dark:text-dada-text-dark" %>
+        <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "We need your current password to save changes", class: "mt-1 block w-full px-3 py-2 bg-white dark:bg-zinc-700 text-dada-text-light dark:text-dada-text-dark border border-gray-300 dark:border-zinc-600 rounded" %>
       </div>
 
       <%= f.submit "Update Account", class: "w-full bg-dada-primary hover:bg-dada-accent text-white font-semibold py-2 rounded transition" %>
