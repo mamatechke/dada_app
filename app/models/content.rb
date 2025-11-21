@@ -6,6 +6,8 @@ class Content < ApplicationRecord
   has_many :users_who_saved, through: :saved_contents, source: :user
 
   scope :published, -> { where(published: true) }
+  scope :public_content, -> { where(visibility: "public") }
+  scope :private_content, -> { where(visibility: "private") }
   scope :for_stage, ->(stage) { where("? = ANY(stage_tags)", stage) if stage.present? }
   scope :for_symptom, ->(symptom) { where("? = ANY(symptom_tags)", symptom) if symptom.present? }
   scope :for_locale, ->(locale) { where(locale: locale || "en") }
@@ -13,6 +15,7 @@ class Content < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
+  validates :visibility, inclusion: { in: ["public", "private"] }
 
   CONTENT_TYPES = ["article", "video", "guide", "tip"].freeze
   STAGES = ["Perimenopause", "Menopause", "Post-menopause", "General", "Ally"].freeze
@@ -21,6 +24,7 @@ class Content < ApplicationRecord
     "Brain fog", "Irregular periods", "Vaginal dryness", "Low libido",
     "Weight changes", "Joint pain"
   ].freeze
+  VISIBILITY_OPTIONS = ["public", "private"].freeze
 
   def increment_view_count!
     increment!(:view_count)

@@ -69,6 +69,7 @@ module Admin
         :content_type,
         :locale,
         :published,
+        :visibility,
         stage_tags: [],
         symptom_tags: []
       )

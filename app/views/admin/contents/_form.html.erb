@@ -89,7 +89,7 @@
         <h3 class="text-lg font-medium leading-6 text-gray-900">Publishing</h3>
         <p class="mt-1 text-sm text-gray-500">Control the visibility of this content.</p>
       </div>
-      <div class="mt-5 md:mt-0 md:col-span-2">
+      <div class="mt-5 md:mt-0 md:col-span-2 space-y-6">
         <div class="flex items-start">
           <div class="flex items-center h-5">
             <%= f.check_box :published, class: "h-4 w-4 text-dada-primary focus:ring-dada-primary border-gray-300 rounded" %>
@@ -97,6 +97,26 @@
           <div class="ml-3 text-sm">
             <%= f.label :published, "Published", class: "font-medium text-gray-700" %>
             <p class="text-gray-500">Make this content visible to users.</p>
+          </div>
+        </div>
+
+        <div>
+          <%= f.label :visibility, "Access Control", class: "block text-sm font-medium text-gray-700 mb-2" %>
+          <div class="space-y-2">
+            <div class="flex items-center">
+              <%= f.radio_button :visibility, "public", class: "h-4 w-4 text-dada-primary focus:ring-dada-primary border-gray-300" %>
+              <%= f.label :visibility_public, class: "ml-2 text-sm" do %>
+                <span class="font-medium text-gray-700">Public</span>
+                <span class="text-gray-500 block">Anyone can view this content, including non-logged-in users.</span>
+              <% end %>
+            </div>
+            <div class="flex items-center">
+              <%= f.radio_button :visibility, "private", class: "h-4 w-4 text-dada-primary focus:ring-dada-primary border-gray-300" %>
+              <%= f.label :visibility_private, class: "ml-2 text-sm" do %>
+                <span class="font-medium text-gray-700">Members Only</span>
+                <span class="text-gray-500 block">Only logged-in users can view this content.</span>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
